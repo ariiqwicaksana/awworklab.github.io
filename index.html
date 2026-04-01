@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AW WorkLab - Solo Game Developer & Freelance Portfolio Blog">
+    <title>Home | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <a href="index.html" class="active">Home</a>
+            <a href="works.html">Works</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content">
+        <h1 style="display: none;">AW WorkLab Blog</h1>
+
+        <div class="blog-grid">
+            <article class="blog-card">
+                <a href="post.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="images/post1.jpg" alt="Preview of Bad Grades project">
+                    </div>
+                    <time datetime="2026-02-20">Feb 20, 2026</time>
+                    <h2>Bad Grades</h2>
+                </a>
+            </article>
+
+            <article class="blog-card">
+                <a href="post.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="images/post2.jpg" alt="Preview of I'm Slow project">
+                    </div>
+                    <time datetime="2025-09-12">Sep 12, 2025</time>
+                    <h2>I’m Slow</h2>
+                </a>
+            </article>
+
+            <article class="blog-card">
+                <a href="post.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="images/post3.jpg" alt="Preview of Playing Cards project">
+                    </div>
+                    <time datetime="2025-03-18">Mar 18, 2025</time>
+                    <h2>Playing Cards</h2>
+                </a>
+            </article>
+
+            <article class="blog-card">
+                <a href="post.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="images/post4.jpg" alt="Preview of Balatro Timeline">
+                    </div>
+                    <time datetime="2025-03-06">Mar 06, 2025</time>
+                    <h2>The Balatro Timeline</h2>
+                </a>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+
+        menuOpen.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        overlay.addEventListener('click', () => toggleMenu(false));
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hubungi AW WorkLab untuk kolaborasi proyek game, rigging, atau custom tools.">
+    <title>Contact | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="index.html">Home</a>
+            <a href="works.html">Works</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content">
+        <div class="post-wrapper">
+            <h1 class="page-title">Contact Me</h1>
+            
+            <form class="contact-form" id="contact-form" action="#" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="email">Email <span>(required)</span></label>
+                    <input type="email" id="email" name="email" required placeholder="example@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject <span>(optional)</span></label>
+                    <input type="text" id="subject" name="subject" placeholder="What is this about?">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message <span>(required)</span></label>
+                    <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project.."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Attachments <span>(Images or PDF)</span></label>
+                    <div class="file-upload-wrapper" id="drop-area">
+                        <input type="file" id="file-upload" name="attachments[]" multiple accept=".jpg,.jpeg,.png,.pdf">
+                        <label for="file-upload" class="custom-file-label" id="file-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Choose files or drag them here</span>
+                        </label>
+                    </div>
+                    <div id="file-list" class="file-preview-list"></div>
+                </div>
+
+                <button type="submit" class="btn-send">
+                    <i class="fas fa-paper-plane" style="margin-right: 10px;"></i> SEND MESSAGE
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- NAVBAR LOGIC ---
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+
+        menuOpen.onclick = () => toggleMenu(true);
+        menuClose.onclick = () => toggleMenu(false);
+        overlay.onclick = () => toggleMenu(false);
+
+        // --- FILE UPLOAD LOGIC ---
+        const fileInput = document.getElementById('file-upload');
+        const fileLabel = document.getElementById('file-label');
+        const dropArea = document.getElementById('drop-area');
+
+        // Update label saat file dipilih
+        fileInput.addEventListener('change', function() {
+            const files = this.files;
+            if (files.length > 0) {
+                const names = Array.from(files).map(f => f.name).join(', ');
+                fileLabel.innerHTML = `<i class="fas fa-check-circle" style="color: #4CAF50;"></i> <span>${files.length} file(s) ready</span>`;
+                fileLabel.title = names; // Muncul saat di-hover mouse
+                dropArea.classList.add('selected');
+            } else {
+                fileLabel.innerHTML = `<i class="fas fa-cloud-upload-alt"></i> <span>Choose files or drag them here</span>`;
+                dropArea.classList.remove('selected');
+            }
+        });
+
+        // Efek visual saat drag file di atas area (Optional enhancement)
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropArea.style.borderColor = "white";
+                dropArea.style.backgroundColor = "#111";
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropArea.style.borderColor = "#444";
+                dropArea.style.backgroundColor = "transparent";
+            }, false);
+        });
+    </script>
+
+</body>
+</html>

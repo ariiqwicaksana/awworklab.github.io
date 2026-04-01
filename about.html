@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tentang AW WorkLab - Spesialis Game Development, Rigging, Tools, dan Pipeline.">
+    <title>About | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="index.html">Home</a>
+            <a href="works.html">Works</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content">
+        <div class="post-wrapper">
+            <h1 class="post-title-large">About</h1>
+            
+            <article class="post-body">
+                <p><strong>AW WorkLab</strong> adalah ruang kreatif eksperimental yang berfokus pada pengembangan game, desain teknis, dan pengalaman interaktif. Kami percaya bahwa efisiensi teknis dan estetika visual harus berjalan beriringan untuk menciptakan karya yang bermakna.</p>
+            </article>
+
+            <section class="capabilities-section">
+                <h2 class="section-subtitle">What I can do?</h2>
+                
+                <div class="capabilities-grid">
+                    <div class="cap-item">
+                        <div class="cap-icon-box"><i class="fas fa-bone cap-icon"></i></div>
+                        <h3>Rigging</h3>
+                        <p>Membangun sistem kerangka (skeleton) untuk model 2D/3D agar siap dianimasikan dengan kontrol yang fleksibel.</p>
+                    </div>
+
+                    <div class="cap-item">
+                        <div class="cap-icon-box"><i class="fas fa-tools cap-icon"></i></div>
+                        <h3>Tools</h3>
+                        <p>Mengembangkan perangkat kustom untuk meningkatkan produktivitas artis, desainer, dan developer dalam alur kerja mereka.</p>
+                    </div>
+
+                    <div class="cap-item">
+                        <div class="cap-icon-box"><i class="fas fa-lightbulb cap-icon"></i></div>
+                        <h3>Implementation</h3>
+                        <p>Integrasi aset visual dan teknis ke dalam game engine agar berfungsi optimal sesuai logika permainan.</p>
+                    </div>
+
+                    <div class="cap-item">
+                        <div class="cap-icon-box"><i class="fas fa-project-diagram cap-icon"></i></div>
+                        <h3>Pipeline</h3>
+                        <p>Mengelola alur kerja tim, menciptakan proses yang jelas, dan mempermudah pertukaran file antar developer.</p>
+                    </div>
+
+                    <div class="cap-item">
+                        <div class="cap-icon-box"><i class="fas fa-layer-group cap-icon"></i></div>
+                        <h3>Shaders</h3>
+                        <p>Membuat dan mengoptimalkan material shader untuk mencapai gaya visual yang diinginkan.</p>
+                    </div>
+
+                    <div class="cap-item">
+                        <div class="cap-icon-box"><i class="fas fa-atom cap-icon"></i></div>
+                        <h3>Simulation</h3>
+                        <p>Mensimulasikan perilaku material dan fisika yang realistis untuk mendukung imersi di dalam game.</p>
+                    </div>
+                </div>
+
+                <div class="cv-container" style="text-align: center; margin-top: 4rem;">
+                    <a href="assets/CV_Ariiq_Wicaksana.pdf" download class="btn-send">
+                        <i class="fas fa-file-download" style="margin-right: 10px;"></i> DOWNLOAD CV
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+
+        menuOpen.onclick = () => toggleMenu(true);
+        menuClose.onclick = () => toggleMenu(false);
+        overlay.onclick = () => toggleMenu(false);
+    </script>
+
+</body>
+</html>
