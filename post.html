@@ -251,6 +251,53 @@ public class noSelfColl : MonoBehaviour
             lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
         };
 
+        // Dragging Logic
+        const startDrag = (e) => {
+            if (currentZoom > 1) {
+                isDragging = true;
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+                
+                startX = clientX - translateX;
+                startY = clientY - translateY;
+                
+                lightboxImg.style.cursor = 'grabbing';
+                lightboxImg.style.transition = 'none';
+            }
+        };
+
+        const moveDrag = (e) => {
+            if (!isDragging) return;
+            
+            
+            if (e.type.includes('touch')) e.preventDefault();
+
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            
+            translateX = clientX - startX;
+            translateY = clientY - startY;
+            
+            updateTransform();
+        };
+
+        const endDrag = () => {
+            isDragging = false;
+            if (lightboxImg) {
+                lightboxImg.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+                lightboxImg.style.transition = 'transform 0.2s ease';
+            }
+        };
+
+        lightboxImg.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', moveDrag);
+        window.addEventListener('mouseup', endDrag);
+
+        lightboxImg.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('touchmove', moveDrag, { passive: false });
+        window.addEventListener('touchend', endDrag);
+
         // Close Lightbox
         const closeLB = () => { lightbox.style.display = 'none'; document.body.style.overflow = 'auto'; };
         document.querySelector('.lightbox-close').onclick = closeLB;
