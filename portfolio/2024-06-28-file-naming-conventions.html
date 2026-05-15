@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detail proyek dan update terbaru dari AW WorkLab.">
+    <title>File Naming Conventions | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="../index.html">Home</a>
+            <a href="../works.html">Works</a>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content" data-protected="false">
+        <div id="guest-area" class="guest-area">
+            <div class="guest-content">
+                <h1 class="guest-title">Guest Area</h1>
+                <p class="guest-subtitle">Please enter the password below.</p>
+                
+                <div class="password-box">
+                    <input type="password" id="pass-input" placeholder="Password" aria-label="Password">
+                    <button onclick="checkPassword()" class="btn-send">GO</button>
+                </div>
+                <p id="error-msg" style="color: #ff4d4d; margin-top: 1rem; display: none;">Wrong password, please try again.</p>
+            </div>
+        </div>
+
+        <div id="main-content" style="display: none;">
+            <div class="post-wrapper">
+                <time class="post-date" datetime="2024-06-28">Jun 28, 2024</time>
+                <h1 class="post-title-large">File Naming Conventions</h1>
+                
+                <article class="post-body">
+                    <p>
+                        A file naming convention is a standardized approach to naming digital files in a way that reflects their content, context, and version. Effective naming conventions make files easy to find, sort, and share—especially in collaborative environments where clarity and consistency are essential.<br>
+                        <br>
+                        Poorly named files can create confusion, slow down workflows, and make version tracking a nightmare. A good file name, on the other hand, tells you exactly what the file is without needing to open it.
+                    </p>
+
+                    <h2>Why It Matters</h2>
+                    <p>
+                        - Efficiency: Well-named files reduce the time spent searching.<br>
+                        - Clarity: File names act as mini-descriptions.<br>
+                        - Consistency: Keeps teams aligned, especially when sharing files.<br>
+                        - Version control: Makes it easy to track progress and changes.<br>
+                        - Compatibility: Avoids issues with file systems or software that reject special characters.
+                    </p>
+
+                    <h2>Example Comparison</h2>
+                    <p>
+                        Without a Naming Convention :<br>
+                        - final.docx<br>
+                        - notes_new2.doc<br>
+                        - projectdataLAST.xlsx<br>
+                        - Untitled1.ppt<br>
+                        - 2023stuff.docx<br>
+                        <br>
+                        With a Naming Convention :<br>
+                        - 20240410_MobileApp_UserResearchSummary_Lin_v1-00.docx<br>
+                        - 20240327_EcomRevamp_HomepageWireframe_Lee_v2-03.fig<br>
+                        - 20240401_QuarterlyReport_FinanceDept_Chen_v3-01.xlsx<br>
+                        - 20240315_GameProject_LevelDesign_Ando_v1-02.pptx<br>
+                        - 20240410_PortfolioReview_Notes_MentorshipCall_Sam_v1-00.txt
+                    </p>
+
+                    <h2>Core Principles & Tips</h2>
+                    <p>
+                        1. Be Information-Rich, Not Verbose.<br>
+                        - Do: 20240401_WebsiteRedesign_UIFlow_Jordan_v2-01.fig<br>
+                        - Don't: redesignfig_final_new2.fig<br>
+                        - Why: A well-structured name saves time and keeps your files context-aware.<br>
+                        <br>
+                        2. Use Consistent Delimiters, Use underscores _ to separate major components, and hyphens - within components.<br>
+                        - Do: 20240310_PortfolioUpdate_CoverPageDesign_v1-00.psd<br>
+                        - Don't: March 10 Portfolio Update - Cover Page Final.psd<br>
+                        - Why: Underscores improve readability and compatibility with most systems and tools.<br>
+                        <br>
+                        3. Include Dates in YYYYMMDD Format.<br>
+                        - Do: 20240410_ContentStrategy_Outline_Ava_v1-01.docx<br>
+                        - Don't: April10Outline.docx or 10-04-2024_Content.docx<br>
+                        - Why: This format ensures proper chronological sorting across all platforms.<br>
+                        <br>
+                        4. Start with Broad, Then Go Specific, Order elements from general to specific: Date_Project_Content_Creator_Version.<br>
+                        - Example: 20240410_EducationalApp_OnboardingFlow_Kai_v2-00.sketch<br>
+                        - Why: This mimics how we search and file info mentally.<br>
+                        <br>
+                        5. Track Versions Properly, Use a two-part system: vX-YY, where X is the major version and YY is the minor (e.g., draft revisions).<br>
+                        - Do: v1-00 → First stable version, v2-01 → Second version, first revision<br>
+                        - Don't: vFinal, finalfinal2, newestversion_thisone.docx<br>
+                        - Why: Keeps sorting clean and your version history accurate.<br>
+                        <br>
+                        6. Avoid Problem Characters, Avoid spaces, symbols, and special characters like ! @ # $ % & which can cause errors or incompatibility.<br>
+                        <br>
+                        7. Add Names for Ownership, Include your name or initials for files that are part of a team project.<br>
+                        - Example: 20240401_TeamPresentation_Draft_JM_v1-00.pptx<br>
+                        <br>
+                        8. Prefix with Context if Shared Outside, If you're sending a file via email or moving it outside its original folder, add the project/folder prefix.<br>
+                        - Do: DesignDoc_20240410_MobileApp_UI_Kai_v1-00.pdf<br>
+                        - Don't: UI_v1.pdf<br>
+                        - Why: Once a file is removed from its folder structure, it loses context unless it's in the file name.​<br>
+                        <br>
+                        Think of your file name as metadata—helping both you and others understand the what, when, who, and which version at a glance. Clean naming habits not only boost productivity but also showcase your professionalism and attention to detail—something every team, employer, or client appreciates.
+                    </p>
+                </article>  
+            </div>
+        </div>
+
+        <section class="newsletter-section">
+            <p class="newsletter-text">Stay updated with my latest experiments. Join the AW WorkLab Dispatch.</p>
+            <form class="contact-form newsletter-form">
+                <input type="email" required placeholder="example@email.com" aria-label="Email for newsletter">
+                <button type="submit" class="btn-send">SUBSCRIBE</button>
+            </form>
+        </section>
+
+        <nav class="post-navigation">
+            <a href="../otherworks/2024-04-23-web-design.html" class="prev-post"><i class="fas fa-chevron-left"></i> Web Design</a>
+            <a href="../otherworks/2024-07-17-art-and-design-collections.html" class="next-post">Art & Design Collections <i class="fas fa-chevron-right"></i></a>
+        </nav>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/awworklab/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/awworklab/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ariiq-wicaksana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/awworklab" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@awworklab" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" aria-label="Close Lightbox"><i class="fas fa-times"></i></button>
+        
+        <div class="lightbox-content-wrapper">
+            <div class="lightbox-controls">
+                <button id="zoom-in" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                <button id="zoom-out" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                <button id="reset-zoom" title="Reset"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            
+            <div class="img-container">
+                <button id="lb-prev" class="lb-nav-btn">&#10094;</button>
+                <img id="lightbox-img" src="" alt="">
+                <button id="lb-next" class="lb-nav-btn">&#10095;</button>
+            </div>
+            
+            <div class="lb-footer">
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+                <div id="lb-number" class="lb-numbertext"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script>
+        // --- 1. NAVBAR LOGIC ---
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+        menuOpen.onclick = () => toggleMenu(true);
+        menuClose.onclick = () => toggleMenu(false);
+        overlay.onclick = () => toggleMenu(false);
+
+        // --- 2. LIGHTBOX & SLIDESHOW LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lbCaption = document.getElementById('lightbox-caption');
+        const lbNumber = document.getElementById('lb-number');
+        const btnPrev = document.getElementById('lb-prev');
+        const btnNext = document.getElementById('lb-next');
+
+        let currentZoom = 1, isDragging = false, startX, startY, translateX = 0, translateY = 0;
+        let currentList = [], currentIndex = 0;
+
+        const resetImageState = () => {
+            currentZoom = 1; translateX = 0; translateY = 0;
+            lightboxImg.style.transform = `translate(0, 0) scale(1)`;
+        };
+
+        const updatePopUp = () => {
+            const target = currentList[currentIndex];
+            lightboxImg.src = target.src;
+            lbCaption.innerText = target.alt || "AW WorkLab Project";
+            lbNumber.innerText = `${currentIndex + 1} / ${currentList.length}`;
+            resetImageState();
+        };
+
+        function openPopUp(list, index, isSlideshowMode) {
+            currentList = list;
+            currentIndex = index;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            const display = isSlideshowMode ? 'block' : 'none';
+            btnPrev.style.display = display;
+            btnNext.style.display = display;
+            lbNumber.style.display = display;
+            
+            updatePopUp();
+        }
+
+        const navigateLB = (step) => {
+            currentIndex = (currentIndex + step + currentList.length) % currentList.length;
+            updatePopUp();
+        };
+
+        // Event Listeners for Images
+        const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+        galleryImgs.forEach((img, i) => img.onclick = () => openPopUp(galleryImgs, i, false));
+
+        const slideshowContainers = document.querySelectorAll('.slideshow-container');
+        slideshowContainers.forEach((container) => {
+            // Ambil hanya gambar yang ada DI DALAM container ini saja
+            const imgsInThisContainer = Array.from(container.querySelectorAll('.mySlides img'));
+            
+            imgsInThisContainer.forEach((img, index) => {
+                img.style.cursor = 'pointer';
+                img.onclick = () => {
+                    // Kirim daftar gambar eksklusif milik kontainer ini ke Lightbox
+                    openPopUp(imgsInThisContainer, index, true);
+                };
+            });
+        });
+
+        btnPrev.onclick = (e) => { e.stopPropagation(); navigateLB(-1); };
+        btnNext.onclick = (e) => { e.stopPropagation(); navigateLB(1); };
+
+        // Zoom Logic
+        document.getElementById('zoom-in').onclick = () => { currentZoom += 0.2; updateTransform(); };
+        document.getElementById('zoom-out').onclick = () => { if(currentZoom > 1) currentZoom -= 0.2; updateTransform(); };
+        document.getElementById('reset-zoom').onclick = resetImageState;
+
+        const updateTransform = () => {
+            lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        };
+
+        // Dragging Logic
+        const startDrag = (e) => {
+            if (currentZoom > 1) {
+                isDragging = true;
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+                
+                startX = clientX - translateX;
+                startY = clientY - translateY;
+                
+                lightboxImg.style.cursor = 'grabbing';
+                lightboxImg.style.transition = 'none';
+            }
+        };
+
+        const moveDrag = (e) => {
+            if (!isDragging) return;
+            
+            
+            if (e.type.includes('touch')) e.preventDefault();
+
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            
+            translateX = clientX - startX;
+            translateY = clientY - startY;
+            
+            updateTransform();
+        };
+
+        const endDrag = () => {
+            isDragging = false;
+            if (lightboxImg) {
+                lightboxImg.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+                lightboxImg.style.transition = 'transform 0.2s ease';
+            }
+        };
+
+        lightboxImg.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', moveDrag);
+        window.addEventListener('mouseup', endDrag);
+
+        lightboxImg.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('touchmove', moveDrag, { passive: false });
+        window.addEventListener('touchend', endDrag);
+
+        // Close Lightbox
+        const closeLB = () => { lightbox.style.display = 'none'; document.body.style.overflow = 'auto'; };
+        document.querySelector('.lightbox-close').onclick = closeLB;
+        lightbox.onclick = (e) => { if(e.target === lightbox || e.target.classList.contains('img-container')) closeLB(); };
+
+        // --- 3. INLINE SLIDESHOW (Halaman Utama) ---
+        function initSlideshows() {
+            const containers = document.querySelectorAll('.slideshow-container');
+            containers.forEach((container) => {
+                // Simpan index masing-masing slideshow di dalam elemennya sendiri
+                container.dataset.currentIndex = 0;
+                showSpecificSlide(container, 0);
+            });
+        }
+
+        function showSpecificSlide(container, index) {
+            const slides = container.getElementsByClassName("mySlides");
+            if (slides.length === 0) return;
+
+            // Pastikan index berputar (looping)
+            let newIndex = index;
+            if (index >= slides.length) newIndex = 0;
+            if (index < 0) newIndex = slides.length - 1;
+
+            // Sembunyikan semua slide HANYA di dalam container ini
+            Array.from(slides).forEach(s => s.style.display = "none");
+            
+            // Tampilkan slide yang dituju
+            slides[newIndex].style.display = "block";
+            container.dataset.currentIndex = newIndex;
+        }
+
+        window.plusSlides = (n, btn) => {
+            const container = btn.closest('.slideshow-container');
+            const currentIndex = parseInt(container.dataset.currentIndex);
+            showSpecificSlide(container, currentIndex + n);
+        };
+
+        // Jalankan inisialisasi saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", initSlideshows);
+
+        // --- 4. PASSWORD LOGIC ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const contentArea = document.querySelector('.content');
+            const isProtected = contentArea.getAttribute('data-protected') === 'true';
+            
+            const guestArea = document.getElementById('guest-area');
+            const mainContent = document.getElementById('main-content');
+
+            if (isProtected) {
+                // Jika dikunci: Tampilkan area password, sembunyikan konten
+                guestArea.style.display = 'flex';
+                mainContent.style.display = 'none';
+            } else {
+                // Jika tidak dikunci: Sembunyikan area password, tampilkan konten langsung
+                guestArea.style.display = 'none';
+                mainContent.style.display = 'block';
+            }
+        });
+
+        function checkPassword() {
+            const passInput = document.getElementById('pass-input').value;
+            const correctPass = "privateproperty"; 
+            const guestArea = document.getElementById('guest-area');
+            const mainContent = document.getElementById('main-content');
+            const errorMsg = document.getElementById('error-msg');
+
+            if (passInput === correctPass) {
+                guestArea.style.display = 'none';
+                mainContent.style.display = 'block';
+                errorMsg.style.display = 'none';
+                window.scrollTo(0, 0);
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('pass-input').value = "";
+            }
+        }
+
+        // Menjalankan fungsi jika menekan tombol 'Enter'
+        document.getElementById('pass-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // --- 5. COPY CODE LOGIC ---
+        document.getElementById('copy-button').onclick = function() {
+            const code = document.getElementById('code-block').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                this.innerText = "Copied!";
+                this.classList.add('active-copy');
+                setTimeout(() => {
+                    this.innerText = "Copy";
+                    this.classList.remove('active-copy');
+                }, 2000);
+            });
+        };
+    </script>
+</body>
+</html>

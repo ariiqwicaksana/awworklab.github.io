@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detail proyek dan update terbaru dari AW WorkLab.">
+    <title>Tales of the Book | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="../index.html">Home</a>
+            <a href="../works.html">Works</a>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content" data-protected="false">
+        <div id="guest-area" class="guest-area">
+            <div class="guest-content">
+                <h1 class="guest-title">Guest Area</h1>
+                <p class="guest-subtitle">Please enter the password below.</p>
+                
+                <div class="password-box">
+                    <input type="password" id="pass-input" placeholder="Password" aria-label="Password">
+                    <button onclick="checkPassword()" class="btn-send">GO</button>
+                </div>
+                <p id="error-msg" style="color: #ff4d4d; margin-top: 1rem; display: none;">Wrong password, please try again.</p>
+            </div>
+        </div>
+
+        <div id="main-content" style="display: none;">
+            <div class="post-wrapper">
+                <time class="post-date" datetime="2023-06-26">Jun 26, 2023</time>
+                <h1 class="post-title-large">Tales of the Book</h1>
+                
+                <article class="post-body">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://youtu.be/Enim7P3Fn4M?si=81lJXo_OW7MdF2zT" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <button onclick="window.open('https://tinysungames.itch.io/tales-of-the-book', '_blank')" class="btn-send">PLAY FROM ITCH.IO</button>
+                    
+                    <div class="project-info-box">
+                        <p>Platform : Android</p>
+                        <p>Engine : Unity</p>
+                        <p>Tools : Unity, Piskel, Blender, Krita</p>
+                        <p>Honor & Award : Honorable Mentions Award Gameseed Competition and Incubation</p>
+                    </div>
+                    <p>Tales of the Book is a mobile game that carries the concept of 2.5D pixel art with a fantasy rpg theme. The goal of this game is to help our character find his way home.</p>
+                    
+                    <h2>My Responsibilities</h2>
+                    <p>
+                        During the work on this project I worked as :​<br>
+                        - Level Designer<br>
+                        - 2D Artist<br>
+                        - Animator
+                    </p>
+
+                    <h2>The Original Mission Design</h2>
+                    <p>
+                        Objectives :​<br>
+                        - Kill the First Goblin<br>
+                        - Looking for tea leaves<br>
+                        - Searching for the golden apple<br>
+                        - Go to the abandoned village
+                    </p>
+
+                    <h2>Setting</h2>
+                    <p>In the forest in which there are temples and huts.</p>
+
+                    <h2>Environment</h2>
+                    <p>
+                        - Inside the temple<br>
+                        - Forest
+                    </p>
+                    <h2>Level Layout (Sketch & Final)</h2>
+
+                    <div class="gallery-container">
+                        <div class="gallery-item"><img src="../assets/IMG-20230710-WA0008.jpg" alt="Wireframe"></div>
+                        <div class="gallery-item"><img src="../assets/S4v4PmNT2QoSDdXEJ3YUvV2q5Z65qJfgK_BO2bRkZuE=_plaintext_638246007525016772.jpg" alt="Mockup UI"></div>
+                        <div class="gallery-item"><img src="../assets/wkpIakeHsUZsUXI_8Er1QL6H9wjrc_rOiUnOywmQtF8=_plaintext_638246007512818430.jpg" alt="Open World Level Design"></div>
+                        <div class="gallery-item"><img src="../assets/kDUeGY9LpjqYWnXbNch6vopUwdNOIzX7SNbMoC9q-iY=_plaintext_638246007514254043.jpg" alt="Open World Level Design Desc"></div>
+                        <div class="gallery-item"><img src="../assets/w8N8kbVFPDivlTamGaXv012qzZCB0N0z06USBltqi2E=_plaintext_638246007513468575.jpg" alt="Temple Level Design"></div>
+                        <div class="gallery-item"><img src="../assets/GBRx_s-D2oCK182eYZ7b9f6hepyExIlCIXqSx1faciI=_plaintext_638246007513803912.jpg" alt="Temple Level Design Desc"></div>
+                        <div class="gallery-item"><img src="../assets/WhatsApp Image 2023-07-10 at 22.42.09.jpg" alt="Final UI"></div>
+                    </div>
+
+                    <h2>Level Design Explanation</h2>
+                    <p>This level design is aimed at exploring for items in a large forest so there are some empty spots for players to struggle to get their quest items. And at every point to get the mission there are several enemy encounters that will prevent the player from getting the mission. And the environment in this game is more focused on storytelling.</p>
+                    <h2>Reference</h2>
+
+                    <div class="gallery-container">
+                        <div class="gallery-item"><img src="../assets/yp2nNlpmLfMyHWhY73DuLmQ2kMoRPs6M8yPaEtWnqTs=_plaintext_638246007515614396.jpg" alt="Reference Image 1"></div>
+                        <div class="gallery-item"><img src="../assets/IzUlyr-1YJSAWrXQRcrjNtOdQ4jf4_jHGhoFGi1wnw0=_plaintext_638246007516084487.jpg" alt="Reference Image 2"></div>
+                        <div class="gallery-item"><img src="../assets/KW5FRRbkirFX0uHASzpv8D2rYtzhxHK4SQmjZro9Ni0=_plaintext_638246007514754275.jpg" alt="Reference Image 3"></div>
+                        <div class="gallery-item"><img src="../assets/U8fNcGbQQiHLEtl4PFm-z0Ujbm9_hi-iZtOOMMvbzKk=_plaintext_638246007515324315.jpg" alt="Reference Image 4"></div>
+                        <div class="gallery-item"><img src="../assets/KjYobKwb73kliRyHeVq7jtX_uAT0BGDFaDqtuTc6VC0=_plaintext_638246007515024250.jpg" alt="Reference Image 5"></div>
+                    </div>
+
+                    <h2>Artwork</h2>
+
+                    <div class="gallery-container">
+                        <div class="gallery-item"><img src="../assets/Arunika (updated).png" alt="Arunika"></div>
+                        <div class="gallery-item"><img src="../assets/Goblin (last).png" alt="Goblin Spritesheet"></div>
+                        <div class="gallery-item"><img src="../assets/Statue.png" alt="Statue"></div>
+                        <div class="gallery-item"><img src="../assets/candle.png" alt="Candle Spritesheet"></div>
+                        <div class="gallery-item"><img src="../assets/Tilemaps Fix.png" alt="Tilemaps"></div>
+                        <div class="gallery-item"><img src="../assets/Brute Goblin.png" alt="Brute Goblin"></div>
+                        <div class="gallery-item"><img src="../assets/Farmer (last).png" alt="Farmer Spritesheet"></div>
+                        <div class="gallery-item"><img src="../assets/Monk.png" alt="Monk Spritesheet"></div>
+                        <div class="gallery-item"><img src="../assets/Torch.png" alt="Torch Spritesheet"></div>
+                    </div>
+                </article>  
+            </div>
+        </div>
+
+        <section class="newsletter-section">
+            <p class="newsletter-text">Stay updated with my latest experiments. Join the AW WorkLab Dispatch.</p>
+            <form class="contact-form newsletter-form">
+                <input type="email" required placeholder="example@email.com" aria-label="Email for newsletter">
+                <button type="submit" class="btn-send">SUBSCRIBE</button>
+            </form>
+        </section>
+
+        <nav class="post-navigation">
+            <a href="../otherworks/2023-03-26-flutter-calculator.html" class="prev-post"><i class="fas fa-chevron-left"></i> Flutter Calculator</a>
+            <a href="../otherworks/2023-08-03-fps-level-design.html" class="next-post">FPS Level Design <i class="fas fa-chevron-right"></i></a>
+        </nav>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/awworklab/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/awworklab/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ariiq-wicaksana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/awworklab" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@awworklab" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" aria-label="Close Lightbox"><i class="fas fa-times"></i></button>
+        
+        <div class="lightbox-content-wrapper">
+            <div class="lightbox-controls">
+                <button id="zoom-in" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                <button id="zoom-out" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                <button id="reset-zoom" title="Reset"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            
+            <div class="img-container">
+                <button id="lb-prev" class="lb-nav-btn">&#10094;</button>
+                <img id="lightbox-img" src="" alt="">
+                <button id="lb-next" class="lb-nav-btn">&#10095;</button>
+            </div>
+            
+            <div class="lb-footer">
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+                <div id="lb-number" class="lb-numbertext"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script>
+        // --- 1. NAVBAR LOGIC ---
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+        menuOpen.onclick = () => toggleMenu(true);
+        menuClose.onclick = () => toggleMenu(false);
+        overlay.onclick = () => toggleMenu(false);
+
+        // --- 2. LIGHTBOX & SLIDESHOW LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lbCaption = document.getElementById('lightbox-caption');
+        const lbNumber = document.getElementById('lb-number');
+        const btnPrev = document.getElementById('lb-prev');
+        const btnNext = document.getElementById('lb-next');
+
+        let currentZoom = 1, isDragging = false, startX, startY, translateX = 0, translateY = 0;
+        let currentList = [], currentIndex = 0;
+
+        const resetImageState = () => {
+            currentZoom = 1; translateX = 0; translateY = 0;
+            lightboxImg.style.transform = `translate(0, 0) scale(1)`;
+        };
+
+        const updatePopUp = () => {
+            const target = currentList[currentIndex];
+            lightboxImg.src = target.src;
+            lbCaption.innerText = target.alt || "AW WorkLab Project";
+            lbNumber.innerText = `${currentIndex + 1} / ${currentList.length}`;
+            resetImageState();
+        };
+
+        function openPopUp(list, index, isSlideshowMode) {
+            currentList = list;
+            currentIndex = index;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            const display = isSlideshowMode ? 'block' : 'none';
+            btnPrev.style.display = display;
+            btnNext.style.display = display;
+            lbNumber.style.display = display;
+            
+            updatePopUp();
+        }
+
+        const navigateLB = (step) => {
+            currentIndex = (currentIndex + step + currentList.length) % currentList.length;
+            updatePopUp();
+        };
+
+        // Event Listeners for Images
+        const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+        galleryImgs.forEach((img, i) => img.onclick = () => openPopUp(galleryImgs, i, false));
+
+        const slideshowContainers = document.querySelectorAll('.slideshow-container');
+        slideshowContainers.forEach((container) => {
+            // Ambil hanya gambar yang ada DI DALAM container ini saja
+            const imgsInThisContainer = Array.from(container.querySelectorAll('.mySlides img'));
+            
+            imgsInThisContainer.forEach((img, index) => {
+                img.style.cursor = 'pointer';
+                img.onclick = () => {
+                    // Kirim daftar gambar eksklusif milik kontainer ini ke Lightbox
+                    openPopUp(imgsInThisContainer, index, true);
+                };
+            });
+        });
+
+        btnPrev.onclick = (e) => { e.stopPropagation(); navigateLB(-1); };
+        btnNext.onclick = (e) => { e.stopPropagation(); navigateLB(1); };
+
+        // Zoom Logic
+        document.getElementById('zoom-in').onclick = () => { currentZoom += 0.2; updateTransform(); };
+        document.getElementById('zoom-out').onclick = () => { if(currentZoom > 1) currentZoom -= 0.2; updateTransform(); };
+        document.getElementById('reset-zoom').onclick = resetImageState;
+
+        const updateTransform = () => {
+            lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        };
+
+        // Dragging Logic
+        const startDrag = (e) => {
+            if (currentZoom > 1) {
+                isDragging = true;
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+                
+                startX = clientX - translateX;
+                startY = clientY - translateY;
+                
+                lightboxImg.style.cursor = 'grabbing';
+                lightboxImg.style.transition = 'none';
+            }
+        };
+
+        const moveDrag = (e) => {
+            if (!isDragging) return;
+            
+            
+            if (e.type.includes('touch')) e.preventDefault();
+
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            
+            translateX = clientX - startX;
+            translateY = clientY - startY;
+            
+            updateTransform();
+        };
+
+        const endDrag = () => {
+            isDragging = false;
+            if (lightboxImg) {
+                lightboxImg.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+                lightboxImg.style.transition = 'transform 0.2s ease';
+            }
+        };
+
+        lightboxImg.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', moveDrag);
+        window.addEventListener('mouseup', endDrag);
+
+        lightboxImg.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('touchmove', moveDrag, { passive: false });
+        window.addEventListener('touchend', endDrag);
+
+        // Close Lightbox
+        const closeLB = () => { lightbox.style.display = 'none'; document.body.style.overflow = 'auto'; };
+        document.querySelector('.lightbox-close').onclick = closeLB;
+        lightbox.onclick = (e) => { if(e.target === lightbox || e.target.classList.contains('img-container')) closeLB(); };
+
+        // --- 3. INLINE SLIDESHOW (Halaman Utama) ---
+        function initSlideshows() {
+            const containers = document.querySelectorAll('.slideshow-container');
+            containers.forEach((container) => {
+                // Simpan index masing-masing slideshow di dalam elemennya sendiri
+                container.dataset.currentIndex = 0;
+                showSpecificSlide(container, 0);
+            });
+        }
+
+        function showSpecificSlide(container, index) {
+            const slides = container.getElementsByClassName("mySlides");
+            if (slides.length === 0) return;
+
+            // Pastikan index berputar (looping)
+            let newIndex = index;
+            if (index >= slides.length) newIndex = 0;
+            if (index < 0) newIndex = slides.length - 1;
+
+            // Sembunyikan semua slide HANYA di dalam container ini
+            Array.from(slides).forEach(s => s.style.display = "none");
+            
+            // Tampilkan slide yang dituju
+            slides[newIndex].style.display = "block";
+            container.dataset.currentIndex = newIndex;
+        }
+
+        window.plusSlides = (n, btn) => {
+            const container = btn.closest('.slideshow-container');
+            const currentIndex = parseInt(container.dataset.currentIndex);
+            showSpecificSlide(container, currentIndex + n);
+        };
+
+        // Jalankan inisialisasi saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", initSlideshows);
+
+        // --- 4. PASSWORD LOGIC ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const contentArea = document.querySelector('.content');
+            const isProtected = contentArea.getAttribute('data-protected') === 'true';
+            
+            const guestArea = document.getElementById('guest-area');
+            const mainContent = document.getElementById('main-content');
+
+            if (isProtected) {
+                // Jika dikunci: Tampilkan area password, sembunyikan konten
+                guestArea.style.display = 'flex';
+                mainContent.style.display = 'none';
+            } else {
+                // Jika tidak dikunci: Sembunyikan area password, tampilkan konten langsung
+                guestArea.style.display = 'none';
+                mainContent.style.display = 'block';
+            }
+        });
+
+        function checkPassword() {
+            const passInput = document.getElementById('pass-input').value;
+            const correctPass = "privateproperty"; 
+            const guestArea = document.getElementById('guest-area');
+            const mainContent = document.getElementById('main-content');
+            const errorMsg = document.getElementById('error-msg');
+
+            if (passInput === correctPass) {
+                guestArea.style.display = 'none';
+                mainContent.style.display = 'block';
+                errorMsg.style.display = 'none';
+                window.scrollTo(0, 0);
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('pass-input').value = "";
+            }
+        }
+
+        // Menjalankan fungsi jika menekan tombol 'Enter'
+        document.getElementById('pass-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // --- 5. COPY CODE LOGIC ---
+        document.getElementById('copy-button').onclick = function() {
+            const code = document.getElementById('code-block').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                this.innerText = "Copied!";
+                this.classList.add('active-copy');
+                setTimeout(() => {
+                    this.innerText = "Copy";
+                    this.classList.remove('active-copy');
+                }, 2000);
+            });
+        };
+    </script>
+</body>
+</html>

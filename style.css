@@ -21,7 +21,10 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 2rem 5%;
-    position: relative;
+    position: sticky;
+    top: 0;
+    background-color: black;
+    z-index: 1000;
 }
 
 .logo img {
@@ -218,6 +221,25 @@ h2 {
     line-height: 1.1;
 }
 
+/* Kotak info proyek (Engine & Tools) */
+.project-info-box {
+    background-color: white; /* Warna latar belakang putih */
+    color: black;            /* Warna teks hitam agar kontras */
+    padding: 2rem;           /* Memberi ruang di dalam kotak */
+    margin: 2rem 0;          /* Jarak kotak dengan elemen atas dan bawah */
+    width: 100%;             /* Lebar penuh mengikuti pembungkusnya */
+}
+
+.project-info-box p {
+    margin-bottom: 0.5rem;   /* Jarak antar baris teks */
+    font-size: 1.1rem;       /* Ukuran font disesuaikan */
+    color: black !important; /* Memastikan teks tetap hitam */
+}
+
+.project-info-box p:last-child {
+    margin-bottom: 0;        /* Menghapus margin bawah pada baris terakhir */
+}
+
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -303,6 +325,16 @@ pre[class*="language-"]::-webkit-scrollbar-thumb {
 
 pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/* Styling untuk Single Image */
+.single-image-container {
+    margin: 2.5rem 0;
+    width: 100%;
+}
+
+.post-body .image-wrapper {
+    margin-bottom: 0; /* Reset margin bawah jika menggunakan container sendiri */
 }
 
 /* Container Utama Galeri */
@@ -527,6 +559,58 @@ pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
     display: none; /* Sembunyikan default */
     color: #888;
     font-size: 14px;
+}
+
+/* Guest Area */
+.guest-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh; /* Agar berada di tengah layar */
+    text-align: center;
+}
+
+.guest-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.guest-subtitle {
+    color: #888;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.password-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.password-box input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #444;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.password-box input:focus {
+    border-color: white;
+}
+
+.password-box .btn-send {
+    width: 100%;
+    letter-spacing: 2px;
 }
 
 /* Post Navigation (Prev/Next) */
