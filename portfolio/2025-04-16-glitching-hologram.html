@@ -1,1 +1,784 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detail proyek dan update terbaru dari AW WorkLab.">
+    <title>Glitching Hologram | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
 
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="../index.html">Home</a>
+            <a href="../works.html">Works</a>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content" data-protected="false">
+        <div id="guest-area" class="guest-area">
+            <div class="guest-content">
+                <h1 class="guest-title">Guest Area</h1>
+                <p class="guest-subtitle">Please enter the password below.</p>
+                
+                <div class="password-box">
+                    <input type="password" id="pass-input" placeholder="Password" aria-label="Password">
+                    <button onclick="checkPassword()" class="btn-send">GO</button>
+                </div>
+                <p id="error-msg" style="color: #ff4d4d; margin-top: 1rem; display: none;">Wrong password, please try again.</p>
+            </div>
+        </div>
+
+        <div id="main-content" style="display: none;">
+            <div class="post-wrapper">
+                <time class="post-date" datetime="2025-04-16">Apr 16, 2025</time>
+                <h1 class="post-title-large">Glitching Hologram</h1>
+                
+                <article class="post-body">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VIDEO_ID_HERE" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <button onclick="window.open('https://github.com/ariiqwicaksana/my-portfolio-unity.git', '_blank')" class="btn-send">PLAY FROM GITHUB</button>
+                    
+                    <div class="project-info-box">
+                        <p>Engine : Unity</p>
+                        <p>Tools : Unity</p>
+                    </div>
+                    <p>Hologram is surface material shader with moving lines and has a glitch effect.</p>
+                    <h2>Material</h2>
+
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Screenshot from 2024-07-03 10-34-51.png" alt="Material" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h2>Shader Graph</h2>
+
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Hologram.png" alt="Hologram Shader Graph" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h2>Script</h2>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <span>Glitch.cs</span>
+                            <button class="copy-btn" id="copy-button">Copy</button>
+                        </div>
+                        <pre><code class="language-csharp" id="code-block">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Glitch : MonoBehaviour
+{
+    private Material material;
+
+    private void Awake()
+    {
+        material = GetComponent<Renderer>().material;
+
+        StartCoroutine(GlitchRoutine());
+    }
+
+    private IEnumerator GlitchRoutine()
+    {
+        while(true)
+        {
+            material.SetFloat("_GlitchStrength", 0.0f);
+            material.SetFloat("_ScanlineOffset", 0.0f);
+            yield return new WaitForSeconds(0.25f);
+
+            material.SetFloat("_GlitchStrength", 0.75f);
+            material.SetFloat("_ScanlineOffset", 0.5f);
+            yield return new WaitForSeconds(0.25f);
+
+            material.SetFloat("_GlitchStrength", 0.0f);
+            material.SetFloat("_ScanlineOffset", 0.0f);
+            yield return new WaitForSeconds(0.5f);
+
+            material.SetFloat("_GlitchStrength", 0.5f);
+            material.SetFloat("_ScanlineOffset", 0.5f);
+            yield return new WaitForSeconds(0.1f);
+
+            material.SetFloat("_GlitchStrength", 0.0f);
+            material.SetFloat("_ScanlineOffset", 0.0f);
+            yield return new WaitForSeconds(0.1f);
+
+            material.SetFloat("_GlitchStrength", 0.25f);
+            material.SetFloat("_ScanlineOffset", 0.5f);
+            yield return new WaitForSeconds(0.1f);
+
+            material.SetFloat("_GlitchStrength", 0.0f);
+            material.SetFloat("_ScanlineOffset", 0.0f);
+            yield return new WaitForSeconds(0.4f);
+
+            material.SetFloat("_GlitchStrength", 0.5f);
+            material.SetFloat("_ScanlineOffset", 0.5f);
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <h2>Explanation</h2>
+
+                    <h3 class="step-title">Fresnel lighting</h3>
+                    <p>
+                        Let’s kick things off with a visual trick that gives our object that glowing, sci-fi outline — Fresnel lighting.​
+                    </p>
+
+                    <p>
+                        Imagine you’re looking at a shiny bubble. When you look straight at the center, it seems dim, but the edges catch the light and glow. That’s Fresnel in action. It simulates how light behaves on surfaces when seen from different angles — and it’s especially powerful for creating holographic effects.
+                    </p>
+
+                    <p>
+                        In technical terms, Fresnel lighting depends on the angle between your viewpoint and the surface of the object. The steeper the viewing angle (i.e., looking at the edge of a curved object), the stronger the effect. That’s why spheres and curved surfaces show this effect beautifully, while sharp-edged objects show less of it.
+                    </p>
+
+                    <h3 class="step-title">Let’s Build It in Shader Graph:</h3>
+
+                    <ol class="tutorial-list">
+                        <li>
+                            <strong>Create a Fresnel Node</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Unity has a ready-to-go Fresnel Effect node. Drop it in.​</li>
+                                <li>Set the Power to something like 4 or 5. This controls how tight or spread-out the glow is — higher values make it thinner and more focused around the edges.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Make it Glow​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Create a Color property called FresnelColor, and set its mode to HDR (High Dynamic Range). This allows us to punch in bright, emissive colors that can glow more intensely than regular colors.​</li>
+                                <li>Choose a bright color (e.g., white with intensity 2) to start with.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Combine the Effect​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Multiply the output of the Fresnel node by the FresnelColor. This gives us a colorized glow that gets brighter on the edges of the object.​</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Connect It​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Plug this combined result into both the Emission and Alpha slots of the PBR Master node.​</li>
+                                <li>Set the Alpha Clip Threshold to 0 and change the Surface type to Transparent under the gear icon.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Add a Base Color​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>To fill in the center of the object, add a MainColor property (also HDR), and connect it to the Albedo input. Make this one less intense than the FresnelColor, so the glow stands out.​</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p>
+                        Now if you apply this shader to a sphere, you’ll get a glowing ring effect around the edges — it already feels like a sci-fi hologram! This "edge glow" is a huge part of the illusion, and it's what makes the shader work especially well for rounded objects like characters, planets, or alien plants.
+                    </p>
+
+                    <h3 class="step-title">Scanline Lighting</h3>
+                    <p>
+                        So we’ve got our glowing edges with the Fresnel effect — now let’s breathe life into it with a moving scanline effect. Think of those retro sci-fi holograms where a horizontal light sweeps down the body — like a futuristic projector constantly refreshing the image.
+                    </p>
+
+                    <h3 class="step-title">Step-by-step Breakdown:</h3>
+
+                    <ol class="tutorial-list">
+                        <li>
+                            <strong>Bring in a Scanline Texture</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>You’ll need a texture that has horizontal lines — alternating bright and dark, like stripes on a barcode.​</li>
+                                <li>In the original project, there’s a file called HologramLines.png. If you're rolling your own, a simple black-and-white pattern with a touch of noise or variation works great for a less "perfect" and more realistic feel.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Set It Up in the Shader​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Add a new Texture2D property — name it something like ScanlineTexture.​</li>
+                                <li>Use a Sample Texture 2D node to read from this texture.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Make It Flow Vertically​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>We don’t want the texture to sit still — we want it to scroll down the object, aligned with the real-world "up and down" (Y-axis).​</li>
+                                <li>To do that, grab a Position node and set it to World space.</li>
+                                <li>Then use a Split node to isolate the Y-axis component (this gives us how high each pixel is in world space).</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Scroll Over Time​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Add a property called ScrollSpeed (Vector1), and multiply it with the Time node. This creates a timer for our scrolling animation.​</li>
+                                <li>Add this result to the Y-value from the position node — this makes the texture appear to flow downward like a scanline sweeping through the object.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Create New UV Coordinates​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>With the new Y-value (which now includes time), create a Vector2 node where:​
+                                    <ul class="nested-sub-list">
+                                        <li>X = something like 0.5 (the texture is uniform left to right, so X doesn’t matter much)​</li>
+                                        <li>Y = your animated scroll position</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Control Repetition with Tiling​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Add a HologramTiling property (Vector2). This decides how tightly packed the scanlines are.​</li>
+                                <li>Use a Tiling And Offset node and plug in:
+                                    <ul class="nested-sub-list">
+                                        <li>Our animated UVs → UV input​</li>
+                                        <li>HologramTiling → Tiling input</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Connect to Emission​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Feed the output UVs into your Sample Texture 2D node.​</li>
+                                <li>Finally, combine the scanline texture and your existing fresnel glow using an Add node. This blends the moving scanlines on top of the fresnel effect.</li>
+                                <li>Plug this result into both the Emission and Alpha ports of the PBR Master node.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p>
+                        Once everything’s hooked up, your material will now feel alive — with glowing edges and animated scanlines sweeping through it. This adds that unmistakable sci-fi hologram vibe — a mix of digital pulse and futuristic shimmer.
+                    </p>
+
+                    <p>
+                        The beauty of this setup is that it’s procedural — it works dynamically in world space, so multiple objects can share the same shader and still have a consistent, natural scanline effect moving across them.
+                    </p>
+
+                    <h3 class="step-title">Removing Shadows</h3>
+                    <p>
+                        By nature, holograms are light-based projections — not solid objects — so it’s weird when they receive shadows like regular physical materials. In Unity's Universal Render Pipeline (URP), though, stopping an object from receiving shadows isn’t as simple as ticking a checkbox.
+                    </p>
+
+                    <p>
+                        In the old rendering system (Built-in Pipeline), there was a handy checkbox for “Receive Shadows” on materials. But URP? Not so generous. We have to do a little workaround using Shader Keywords and Debug Mode.
+                    </p>
+
+                    <h3 class="step-title">Here’s How to Turn Off Shadows on the Hologram Shader:​</h3>
+
+                    <ol class="tutorial-list">
+                        <li>
+                            <strong>Add a Shader Keyword</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Inside the Shader Graph for your hologram, open the Blackboard (where your properties are listed).</li>
+                                <li>Click the plus (+) button.</li>
+                                <li>Choose Keyword → Boolean (it’s at the bottom of the list).</li>
+                                <li>Name it <code>_RECEIVE_SHADOWS_OFF</code> — this name must be typed exactly like that. Capital letters, underscores, everything. This keyword is like a switch the URP shader system looks for. When it sees <code>_RECEIVE_SHADOWS_OFF</code>, it knows to stop rendering shadows on that material.</li>
+                                <li>Leave the box ticked by default (this means “shadows are turned off”).</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Use Debug Mode in Inspector​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>To activate the keyword on actual materials, select the material(s) using your hologram shader.​</li>
+                                <li>Click the three dots in the top-right of the Inspector panel, and switch to Debug Mode.</li>
+                                <li>Scroll down to a hidden section called Shader Keywords.</li>
+                                <li>Manually type in: <code>_RECEIVE_SHADOWS_OFF</code> (again, must be exact).</li>
+                                <li>Boom — shadows are gone! Your holograms now behave like light projections instead of physical objects.</li>
+                                <li>Once that’s done, you can return the Inspector back to Normal Mode.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3 class="step-title">Imperfections</h3>
+                    <p>
+                        Perfect holograms are boring. In sci-fi games and movies, holograms almost always flicker, ripple, or glitch a little. That distortion — like a fuzzy phone call — makes the effect feel alive and immersive.​
+                    </p>
+                    
+                    <p>To simulate that, we’ll add two layers of imperfection:​</p>
+
+                    <ol class="tutorial-list">
+                        <li>
+                            <strong>Wobble the Shape (Vertex Distortion)</strong><br>
+                            First, we’ll mess with the actual shape of the object — not permanently, just while it's being rendered.
+                            <p>Think of it like shaking jelly: the model’s surface will gently shift side to side using a noise pattern, so it looks like it’s shimmering or glitching. This is done by offsetting the vertices in the shader, making the silhouette flicker or ripple without needing animations.</p>
+                            <p>This creates that classic "unstable hologram" look.</p>
+                        </li>
+
+                        <li>
+                            <strong>Add Visual Static (Noise Grain)</strong><br>
+                            Next, we’ll simulate signal noise — like when a hologram flickers with digital fuzz.
+                            <p>We’ll layer a second noise texture on top of the scanlines — not to move anything this time, but just to make the image look grainy, like it’s coming through a distorted signal.</p>
+                            <p>This kind of noise doesn’t affect the geometry, just the visuals, adding that subtle visual chaos that makes the hologram feel like it's being projected through space or an unreliable connection.</p>
+                        </li>
+                    </ol>
+
+                    <h3 class="step-title">Why These Imperfections Work</h3>
+                    <p>These little glitches and distortions do a lot of heavy lifting. They:</p>
+                    
+                    <ul class="tutorial-list bullet-list">
+                        <li>Make the hologram feel less like a solid object and more like projected energy.</li>
+                        <li>Help sell the futuristic, techy vibe.</li>
+                        <li>Add subtle motion, even when the object is standing still.</li>
+                    </ul>
+
+                    <h3 class="step-title">Vertex Distortion</h3>
+                    <p>
+                        Imagine a hologram that doesn’t just glow — it shimmers, like it’s unstable or glitching. That’s what we’re building here: a subtle side-to-side ripple effect across the surface of the object.​
+                    </p>
+                    
+                    <p>
+                        But there’s a catch:<br>
+                        We can’t move individual pixels in the shader’s fragment stage — we can only move the vertices of the model in the vertex stage. So this trick only works well on objects with lots of vertices (like high-poly spheres, characters, or intentionally high-detail models). If you try it on a cube or low-poly object, you won’t see much change.
+                    </p>
+                    
+                    <p>The Idea in Simple Terms:<br>We’re going to:</p>
+                    <ul class="tutorial-list bullet-list">
+                        <li>Use noise to decide how much to move each vertex sideways.</li>
+                        <li>Base that noise on the height (Y-axis) of the vertex — so all vertices at the same height shift the same way, making smooth horizontal waves.</li>
+                        <li>Move them sideways (X-axis) but relative to the camera, not the object itself — so it always looks like a horizontal ripple, no matter how the object is rotated.</li>
+                    </ul>
+
+                    <h3 class="step-title">How It Works, Step by Step:</h3>
+
+                    <ol class="tutorial-list">
+                        <li>Create a “Glitch Strength” slider (a Vector1 property). This lets you control how strong the wobble effect is. Default value: 0 (off).</li>
+                        <li>Grab each vertex’s position using a Position node set to Object space.</li>
+                        <li>Split that position so we can isolate the Y-axis (this is the “height” of the vertex).</li>
+                        <li>Use the Y-position as input to a Simple Noise node.<br>This gives us a random(ish) value based on height — all vertices at the same height will get the same result.</li>
+                        <li>Multiply the noise by Glitch Strength — this is how far we’ll move the vertex.</li>
+                        <li>Make a new Vector3, using that result as the X value, and zeros for Y and Z — this is our sideways movement.</li>
+                        <li>Convert the original vertex position to View space, where "X" is always horizontal relative to the camera.</li>
+                        <li>Add the distortion to the position in View space.</li>
+                        <li>Convert the result back to Object space so Unity knows where to draw the vertex.</li>
+                        <li>Connect it to the Vertex Position pin on the PBR Master node.</li>
+                    </ol>
+
+                    <p>
+                        By doing the movement in View space, the horizontal wave is always relative to the screen. So even if the object rotates, the distortion still moves left and right on the screen, instead of diagonally or unpredictably. It feels more like a camera glitch that way.
+                    </p>
+
+                    <h3 class="step-title">Noise Grain</h3>
+                    <p>
+                        You know that fuzzy static effect you see on old TVs or glitchy screens? That’s what noise grain is here — a constantly moving, slightly random “fog” or shimmer layered over the hologram to make it feel less perfect and more digital.​
+                    </p>
+                    
+                    <p>
+                        This adds realism, making the hologram feel like it’s made of light that’s being constantly transmitted and interrupted, like a sci-fi projection.
+                    </p>
+                    
+                    <p>What We’re Going to Do:</p>
+                    <ul class="tutorial-list bullet-list">
+                        <li>Add a new control to manually shift scanlines (useful for glitch effects later).</li>
+                        <li>Overlay animated noise to simulate TV static or digital interference.</li>
+                        <li>Blend the noise gently with the scanlines so it looks like background shimmer — not too bright, not too harsh.</li>
+                    </ul>
+
+                    <h3 class="step-title">Step-by-Step Breakdown:</h3>
+
+                    <ol class="tutorial-list">
+                        <li>
+                            <strong>Add Scanline Offset Control</strong><br>
+                            Before we deal with noise, let’s add a Vector1 property called Scanline Offset.
+                            This lets you shift the scanlines vertically — helpful if you ever want to shake them around via script during a glitch.
+                            <ul class="sub-tutorial-list">
+                                <li>Insert a new Add node between the Y position and the Vector2 used for scrolling scanlines.​</li>
+                                <li>Add Scanline Offset there. Now your scanlines can “jump” up/down on command.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Set Up Noise Grain</strong><br>
+                            Next, we’ll create a noise effect that slowly scrolls down the screen like digital fuzz:​
+                            <ul class="sub-tutorial-list">
+                                <li>Add two new properties:​
+                                    <ul class="nested-sub-list">
+                                        <li>Noise Scale (Vector1): controls how fine or large the noise looks. Default: 500.​</li>
+                                        <li>Noise Strength (Vector1): controls how strong/visible the noise is. Default: 0.5.</li>
+                                    </ul>
+                                </li>
+                                <li>From your existing Time * Scroll Speed setup, create a new Vector2:​
+                                    <ul class="nested-sub-list">
+                                        <li>X = 0​</li>
+                                        <li>Y = time (so the noise scrolls down over time)</li>
+                                    </ul>
+                                </li>
+                                <li>Plug this into the Offset of a new Tiling And Offset node.​
+                                    <ul class="nested-sub-list">
+                                        <li>For Tiling, reuse the Hologram Tiling property.​</li>
+                                        <li>For UV, you can just leave it alone or pass object UVs.</li>
+                                    </ul>
+                                </li>
+                                <li>Feed this into a Simple Noise node’s UV input.​
+                                    <ul class="nested-sub-list">
+                                        <li>Set Noise Scale into the noise node’s Scale input.​</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Blend Noise With Scanlines</strong><br>
+                            Now that we’ve got the noise, let’s blend it carefully with our scanline texture:​
+                            <ul class="sub-tutorial-list">
+                                <li>The Simple Noise node outputs values from 0 to 1, which is too bright if added directly.​</li>
+                                <li>So, subtract 0.5 from it → this shifts the range to -0.5 to +0.5.</li>
+                                <li>Multiply that result by Noise Strength → this keeps the brightness under control.</li>
+                                <li>Add this adjusted noise to your scanline texture sample.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p>Instead of plugging the scanline texture straight into your final Add (that combines with fresnel), now plug this modified version (scanline + noise). That way:</p>
+                    
+                    <ul class="tutorial-list bullet-list">
+                        <li>The scanlines stay intact</li>
+                        <li>The noise adds shimmer</li>
+                        <li>The fresnel effect still glows around the edges</li>
+                    </ul>
+
+                    <p>Later, if you write a script to glitch your hologram, you can:</p>
+                    
+                    <ul class="tutorial-list bullet-list">
+                        <li>Randomize Scanline Offset</li>
+                        <li>Spike Glitch Strength</li>
+                        <li>Increase Noise Strength temporarily</li>
+                    </ul>
+
+                    <p>All without changing the shader — just tweak the properties in code.​</p>
+                </article>  
+            </div>
+        </div>
+
+        <section class="newsletter-section">
+            <p class="newsletter-text">Stay updated with my latest experiments. Join the AW WorkLab Dispatch.</p>
+            <form class="contact-form newsletter-form">
+                <input type="email" required placeholder="example@email.com" aria-label="Email for newsletter">
+                <button type="submit" class="btn-send">SUBSCRIBE</button>
+            </form>
+        </section>
+
+        <nav class="post-navigation">
+            <a href="../portfolio/2025-04-16-procedural-animation.html" class="prev-post"><i class="fas fa-chevron-left"></i> Procedural Animation</a>
+            <a href="../portfolio/2025-04-16-slash-vfx.html" class="next-post">Slash VFX <i class="fas fa-chevron-right"></i></a>
+        </nav>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/awworklab/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/awworklab/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ariiq-wicaksana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/awworklab" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@awworklab" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" aria-label="Close Lightbox"><i class="fas fa-times"></i></button>
+        
+        <div class="lightbox-content-wrapper">
+            <div class="lightbox-controls">
+                <button id="zoom-in" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                <button id="zoom-out" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                <button id="reset-zoom" title="Reset"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            
+            <div class="img-container">
+                <button id="lb-prev" class="lb-nav-btn">&#10094;</button>
+                <img id="lightbox-img" src="" alt="">
+                <button id="lb-next" class="lb-nav-btn">&#10095;</button>
+            </div>
+            
+            <div class="lb-footer">
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+                <div id="lb-number" class="lb-numbertext"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-glsl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-gdscript.min.js"></script>
+    <script>
+        // --- 1. NAVBAR LOGIC ---
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+        menuOpen.onclick = () => toggleMenu(true);
+        menuClose.onclick = () => toggleMenu(false);
+        overlay.onclick = () => toggleMenu(false);
+
+        // --- 2. LIGHTBOX & SLIDESHOW LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lbCaption = document.getElementById('lightbox-caption');
+        const lbNumber = document.getElementById('lb-number');
+        const btnPrev = document.getElementById('lb-prev');
+        const btnNext = document.getElementById('lb-next');
+
+        let currentZoom = 1, isDragging = false, startX, startY, translateX = 0, translateY = 0;
+        let currentList = [], currentIndex = 0;
+
+        const resetImageState = () => {
+            currentZoom = 1; translateX = 0; translateY = 0;
+            lightboxImg.style.transform = `translate(0, 0) scale(1)`;
+        };
+
+        const updatePopUp = () => {
+            const target = currentList[currentIndex];
+            lightboxImg.src = target.src;
+            lbCaption.innerText = target.alt || "AW WorkLab Project";
+            lbNumber.innerText = `${currentIndex + 1} / ${currentList.length}`;
+            resetImageState();
+        };
+
+        function openPopUp(list, index, isSlideshowMode) {
+            currentList = list;
+            currentIndex = index;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            const display = isSlideshowMode ? 'block' : 'none';
+            btnPrev.style.display = display;
+            btnNext.style.display = display;
+            lbNumber.style.display = display;
+            
+            updatePopUp();
+        }
+
+        const navigateLB = (step) => {
+            currentIndex = (currentIndex + step + currentList.length) % currentList.length;
+            updatePopUp();
+        };
+
+        // Event Listeners for Images
+        const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+        galleryImgs.forEach((img, i) => img.onclick = () => openPopUp(galleryImgs, i, false));
+
+        const slideshowContainers = document.querySelectorAll('.slideshow-container');
+        slideshowContainers.forEach((container) => {
+            // Ambil hanya gambar yang ada DI DALAM container ini saja
+            const imgsInThisContainer = Array.from(container.querySelectorAll('.mySlides img'));
+            
+            imgsInThisContainer.forEach((img, index) => {
+                img.style.cursor = 'pointer';
+                img.onclick = () => {
+                    // Kirim daftar gambar eksklusif milik kontainer ini ke Lightbox
+                    openPopUp(imgsInThisContainer, index, true);
+                };
+            });
+        });
+
+        btnPrev.onclick = (e) => { e.stopPropagation(); navigateLB(-1); };
+        btnNext.onclick = (e) => { e.stopPropagation(); navigateLB(1); };
+
+        // Zoom Logic
+        document.getElementById('zoom-in').onclick = () => { currentZoom += 0.2; updateTransform(); };
+        document.getElementById('zoom-out').onclick = () => { if(currentZoom > 1) currentZoom -= 0.2; updateTransform(); };
+        document.getElementById('reset-zoom').onclick = resetImageState;
+
+        const updateTransform = () => {
+            lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        };
+
+        // Dragging Logic
+        const startDrag = (e) => {
+            if (currentZoom > 1) {
+                isDragging = true;
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+                
+                startX = clientX - translateX;
+                startY = clientY - translateY;
+                
+                lightboxImg.style.cursor = 'grabbing';
+                lightboxImg.style.transition = 'none';
+            }
+        };
+
+        const moveDrag = (e) => {
+            if (!isDragging) return;
+            
+            
+            if (e.type.includes('touch')) e.preventDefault();
+
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            
+            translateX = clientX - startX;
+            translateY = clientY - startY;
+            
+            updateTransform();
+        };
+
+        const endDrag = () => {
+            isDragging = false;
+            if (lightboxImg) {
+                lightboxImg.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+                lightboxImg.style.transition = 'transform 0.2s ease';
+            }
+        };
+
+        lightboxImg.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', moveDrag);
+        window.addEventListener('mouseup', endDrag);
+
+        lightboxImg.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('touchmove', moveDrag, { passive: false });
+        window.addEventListener('touchend', endDrag);
+
+        // Close Lightbox
+        const closeLB = () => { lightbox.style.display = 'none'; document.body.style.overflow = 'auto'; };
+        document.querySelector('.lightbox-close').onclick = closeLB;
+        lightbox.onclick = (e) => { if(e.target === lightbox || e.target.classList.contains('img-container')) closeLB(); };
+
+        // --- 3. INLINE SLIDESHOW (Halaman Utama) ---
+        function initSlideshows() {
+            const containers = document.querySelectorAll('.slideshow-container');
+            containers.forEach((container) => {
+                // Simpan index masing-masing slideshow di dalam elemennya sendiri
+                container.dataset.currentIndex = 0;
+                showSpecificSlide(container, 0);
+            });
+        }
+
+        function showSpecificSlide(container, index) {
+            const slides = container.getElementsByClassName("mySlides");
+            if (slides.length === 0) return;
+
+            // Pastikan index berputar (looping)
+            let newIndex = index;
+            if (index >= slides.length) newIndex = 0;
+            if (index < 0) newIndex = slides.length - 1;
+
+            // Sembunyikan semua slide HANYA di dalam container ini
+            Array.from(slides).forEach(s => s.style.display = "none");
+            
+            // Tampilkan slide yang dituju
+            slides[newIndex].style.display = "block";
+            container.dataset.currentIndex = newIndex;
+        }
+
+        window.plusSlides = (n, btn) => {
+            const container = btn.closest('.slideshow-container');
+            const currentIndex = parseInt(container.dataset.currentIndex);
+            showSpecificSlide(container, currentIndex + n);
+        };
+
+        // Jalankan inisialisasi saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", initSlideshows);
+
+        // --- 4. PASSWORD LOGIC ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const contentArea = document.querySelector('.content');
+            const isProtected = contentArea.getAttribute('data-protected') === 'true';
+            
+            const guestArea = document.getElementById('guest-area');
+            const mainContent = document.getElementById('main-content');
+
+            if (isProtected) {
+                // Jika dikunci: Tampilkan area password, sembunyikan konten
+                guestArea.style.display = 'flex';
+                mainContent.style.display = 'none';
+            } else {
+                // Jika tidak dikunci: Sembunyikan area password, tampilkan konten langsung
+                guestArea.style.display = 'none';
+                mainContent.style.display = 'block';
+            }
+        });
+
+        function checkPassword() {
+            const passInput = document.getElementById('pass-input').value;
+            const correctPass = "privateproperty"; 
+            const guestArea = document.getElementById('guest-area');
+            const mainContent = document.getElementById('main-content');
+            const errorMsg = document.getElementById('error-msg');
+
+            if (passInput === correctPass) {
+                guestArea.style.display = 'none';
+                mainContent.style.display = 'block';
+                errorMsg.style.display = 'none';
+                window.scrollTo(0, 0);
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('pass-input').value = "";
+            }
+        }
+
+        // Menjalankan fungsi jika menekan tombol 'Enter'
+        document.getElementById('pass-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // --- 5. COPY CODE LOGIC ---
+        document.getElementById('copy-button').onclick = function() {
+            const code = document.getElementById('code-block').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                this.innerText = "Copied!";
+                this.classList.add('active-copy');
+                setTimeout(() => {
+                    this.innerText = "Copy";
+                    this.classList.remove('active-copy');
+                }, 2000);
+            });
+        };
+    </script>
+</body>
+</html>

@@ -221,6 +221,72 @@ h2 {
     line-height: 1.1;
 }
 
+/* Styling List Tutorial */
+.step-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+/* List Utama (Nomor) */
+ol.tutorial-list {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0;
+}
+
+ol.tutorial-list li {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #dddddd;
+    line-height: 1.6;
+}
+
+/* List Bullet (Untuk Step 4) */
+ul.bullet-list {
+    list-style-type: square; /* Bentuk kotak minimalis */
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+ul.bullet-list li {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    color: #dddddd;
+}
+
+/* Sub-list Menjorok ke Dalam (Simbol Strip/-) */
+ul.sub-tutorial-list, ul.nested-sub-list {
+    list-style-type: none; /* Menghilangkan bullet bawaan */
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Membuat simbol '-' kustom yang rapi */
+ul.sub-tutorial-list li::before, ul.nested-sub-list li::before {
+    content: "—";
+    color: #666666;
+    display: inline-block;
+    width: 1.5rem;
+    margin-left: -1.5rem;
+}
+
+ul.sub-tutorial-list li, ul.nested-sub-list li {
+    font-size: 1.15rem;
+    color: #bbbbbb;
+    margin-bottom: 0.4rem;
+}
+
+/* Paragraph di dalam list agar tetap sejajar */
+ol.tutorial-list li p {
+    font-size: 1.15rem;
+    color: #888888;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
 /* Kotak info proyek (Engine & Tools) */
 .project-info-box {
     background-color: white; /* Warna latar belakang putih */

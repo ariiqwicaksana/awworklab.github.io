@@ -1,1 +1,692 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detail proyek dan update terbaru dari AW WorkLab.">
+    <title>Terrain Generator | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
 
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="../index.html">Home</a>
+            <a href="../works.html">Works</a>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content" data-protected="false">
+        <div id="guest-area" class="guest-area">
+            <div class="guest-content">
+                <h1 class="guest-title">Guest Area</h1>
+                <p class="guest-subtitle">Please enter the password below.</p>
+                
+                <div class="password-box">
+                    <input type="password" id="pass-input" placeholder="Password" aria-label="Password">
+                    <button onclick="checkPassword()" class="btn-send">GO</button>
+                </div>
+                <p id="error-msg" style="color: #ff4d4d; margin-top: 1rem; display: none;">Wrong password, please try again.</p>
+            </div>
+        </div>
+
+        <div id="main-content" style="display: none;">
+            <div class="post-wrapper">
+                <time class="post-date" datetime="2025-04-16">Apr 16, 2025</time>
+                <h1 class="post-title-large">Terrain Generator</h1>
+                
+                <article class="post-body">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VIDEO_ID_HERE" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <button onclick="window.open('https://github.com/ariiqwicaksana/my-portfolio-unity.git', '_blank')" class="btn-send">PLAY FROM GITHUB</button>
+                    
+                    <div class="project-info-box">
+                        <p>Engine : Unity</p>
+                        <p>Tools : Unity</p>
+                    </div>
+                    <p>Terrain Generator is a tool to help create procedural content generation that is terrain.</p>
+                    <h2>Material</h2>
+
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Screenshot from 2024-07-03 20-14-01.png" alt="Material" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h2>Shader Graph</h2>
+
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Terrain.png" alt="Terrain Shader Graph" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h2>Script</h2>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <span>TerrainMeshGenerator.cs</span>
+                            <button class="copy-btn" id="copy-button">Copy</button>
+                        </div>
+                        <pre><code class="language-csharp" id="code-block">
+using System;
+using UnityEngine;
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.Mathematics;
+
+public class TerrainMeshGenerator : MonoBehaviour
+{
+    public static TerrainMeshGenerator Instance;
+    
+    public MeshFilter meshFilter;
+    public TerrainMeshVariables meshVariables;
+    public TerrainHeightmapVariables heightmapVariables;
+    public Gradient heightmapGradient;
+
+    private void Awake() {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+    
+    public void OnValidate(){
+        GenerateMap();
+    }
+
+    public void GenerateMap()
+    {
+        NativeArray<Color> _gradientColorArray = new NativeArray<Color>(100, Allocator.Persistent);
+        
+        for (int i = 0; i < 100; i++) {
+            _gradientColorArray[i] = heightmapGradient.Evaluate(i / 100f);
+        }
+        
+        HeightMapGenerator heightmapGenerator = new HeightMapGenerator(meshVariables, heightmapVariables, _gradientColorArray);
+        heightmapGenerator.Schedule(meshVariables.TotalVerts, 10000).Complete();
+        Maps _maps = heightmapGenerator.ReturnAndDispose();
+
+        MeshGenerator meshGenerator = new MeshGenerator(meshVariables, _maps);
+        meshGenerator.Schedule(meshVariables.terrainMeshDetail * meshVariables.terrainMeshDetail, 10000).Complete();
+        
+        meshFilter.mesh = meshGenerator.DisposeAndGetMesh();
+        
+        _gradientColorArray.Dispose();
+    }
+}
+
+[BurstCompile]
+public struct HeightMapGenerator : IJobParallelFor {
+
+    [NativeDisableParallelForRestriction,] private NativeArray<float> _heightMap;
+    [NativeDisableParallelForRestriction] private NativeArray<Color> _colMap; 
+    private readonly TerrainMeshVariables _meshVariables;
+    private readonly TerrainHeightmapVariables _heightmapVariables;
+    [NativeDisableParallelForRestriction] private NativeArray<Color> _gradient;
+
+
+    public HeightMapGenerator(TerrainMeshVariables mv, TerrainHeightmapVariables hv, NativeArray<Color> grad)
+    {
+        _meshVariables = mv;
+        _heightmapVariables = hv;
+        _colMap = new NativeArray<Color>(_meshVariables.TotalVerts, Allocator.TempJob);
+        _heightMap = new NativeArray<float>(_meshVariables.TotalVerts, Allocator.TempJob);
+        _gradient = grad;
+    }
+    
+    public void Execute(int threadIndex)
+    {
+        float x = threadIndex / /*(float)*/(_meshVariables.terrainMeshDetail+1);
+        float y = threadIndex % (_meshVariables.terrainMeshDetail+1);
+        float2 pos = new float2(x, y);
+
+        float h = Mathf.Clamp((OctavedSimplexNoise(pos) + OctavedRidgeNoise(pos))/2f * FalloffMap(pos) * _meshVariables.height, _heightmapVariables.waterLevel, 1000);
+
+        _heightMap[threadIndex] = h / _meshVariables.TileEdgeLength;
+        _colMap[threadIndex] = _gradient[Mathf.Clamp(Mathf.RoundToInt(h), 0, 99)];
+    }
+
+    public Maps ReturnAndDispose() => new Maps(_heightMap, _colMap);
+
+    float OctavedRidgeNoise(float2 pos)
+    {
+        float noiseVal = 0, amplitude = 1, freq = _heightmapVariables.noiseScale, weight = 1;
+
+        for (int o = 0; o < _heightmapVariables.octaves; o++)
+        {
+            float v = 1 - Mathf.Abs(noise.snoise(pos / freq / _meshVariables.terrainMeshDetail));
+            v *= v;
+            v *= weight;
+            weight = Mathf.Clamp01(v * _heightmapVariables.weight);
+            noiseVal += v * amplitude;
+            
+            freq /= _heightmapVariables.frequency;
+            amplitude /= _heightmapVariables.lacunarity;
+        }
+
+        return noiseVal;
+    }
+    float OctavedSimplexNoise(float2 pos)
+    {
+        float noiseVal = 0, amplitude = 1, freq = _heightmapVariables.noiseScale;
+
+        for (int o = 0; o < _heightmapVariables.octaves; o++)
+        {
+            float v = (noise.snoise(pos / freq / _meshVariables.terrainMeshDetail) + 1) / 2f;
+            noiseVal += v * amplitude;
+            
+            freq /= _heightmapVariables.frequency;
+            amplitude /= _heightmapVariables.lacunarity;
+        }
+
+        return noiseVal;
+    }
+    float FalloffMap(float2 pos)
+    { 
+        float x = (pos.x / (_meshVariables.terrainMeshDetail+1)) * 2 - 1;
+        float y = (pos.y / (_meshVariables.terrainMeshDetail+1)) * 2 - 1;
+
+        float value = Mathf.Max(Mathf.Abs(x), Mathf.Abs(y));
+
+        float a = _heightmapVariables.falloffSteepness;
+        float b = _heightmapVariables.falloffOffset;
+        
+        return 1 - (Mathf.Pow(value, a) / (Mathf.Pow(value, a) + Mathf.Pow((b - b * value), a)));
+    }
+}
+
+[BurstCompile]
+public struct MeshGenerator : IJobParallelFor
+{
+    
+    [NativeDisableParallelForRestriction] private NativeArray<Vector3> _verticies;
+    [NativeDisableParallelForRestriction] private NativeArray<int> _triangleIndicies;
+    private TerrainMeshVariables _meshVariables;
+    private Maps _maps;
+
+    public MeshGenerator(TerrainMeshVariables mv, Maps m)
+    {
+        _meshVariables = mv;
+
+        _verticies = new NativeArray<Vector3>(_meshVariables.TotalVerts, Allocator.TempJob);
+        _triangleIndicies = new NativeArray<int>(_meshVariables.TotalTriangles, Allocator.TempJob);
+        _maps = m;
+    }
+
+    public void Execute(int threadIndex)
+    {
+        int x = threadIndex / _meshVariables.terrainMeshDetail;
+        int y = threadIndex % _meshVariables.terrainMeshDetail;
+        
+        // c - - - - d
+        // |         |
+        // |         |
+        // |         |
+        // a - - - - b
+        // a is bottom left and the rest of the points are calculated using the index of a
+        // we are only looping through each square to calculate the triangle and other bs
+        
+        int a = threadIndex + Mathf.FloorToInt(threadIndex / (float)_meshVariables.terrainMeshDetail);
+        int b = a + 1;
+        int c = b + _meshVariables.terrainMeshDetail;
+        int d = c + 1;
+
+        _verticies[a] = new Vector3(x + 0, _maps.HeightMap[a], y + 0) * _meshVariables.TileEdgeLength;
+        _verticies[b] = new Vector3(x + 0, _maps.HeightMap[b], y + 1) * _meshVariables.TileEdgeLength;
+        _verticies[c] = new Vector3(x + 1, _maps.HeightMap[c], y + 0) * _meshVariables.TileEdgeLength;
+        _verticies[d] = new Vector3(x + 1, _maps.HeightMap[d], y + 1) * _meshVariables.TileEdgeLength;
+        
+        _triangleIndicies[threadIndex * 6 + 0] = a;
+        _triangleIndicies[threadIndex * 6 + 1] = b;
+        _triangleIndicies[threadIndex * 6 + 2] = c;
+        _triangleIndicies[threadIndex * 6 + 3] = b;
+        _triangleIndicies[threadIndex * 6 + 4] = d;
+        _triangleIndicies[threadIndex * 6 + 5] = c;
+    }
+
+    public Mesh DisposeAndGetMesh()
+    {
+        // create and assign values to mesh
+        var m = new Mesh();
+        
+        m.SetVertices(_verticies);
+        m.SetColors(_maps.ColorMap);
+        m.triangles = _triangleIndicies.ToArray();
+
+        m.RecalculateNormals();
+
+        // Away with the memory hoarding!! (dispose the native arrays from memory)
+        _verticies.Dispose();
+        _triangleIndicies.Dispose();
+        _maps.Dispose();
+
+        return m;
+    }
+}
+
+[Serializable]
+public struct TerrainMeshVariables
+{
+    [Range(1, 255)]
+    public int terrainMeshDetail;
+    public float terrainWidth;
+    public float height;
+    public int TotalVerts => (terrainMeshDetail + 1) * (terrainMeshDetail + 1);
+    public int TotalTriangles => terrainMeshDetail * terrainMeshDetail * 6;
+    public float TileEdgeLength => terrainWidth / terrainMeshDetail;
+}
+[Serializable]
+public struct TerrainHeightmapVariables
+{
+    [Header("Noise")]
+    public float noiseScale;
+    [Range(0, 4)]
+    public float frequency, lacunarity;
+    [Range(1, 10)]
+    public int octaves;
+    public float weight;
+
+    public float falloffSteepness, falloffOffset;
+    [Header("Extras")] 
+    public float waterLevel;
+}
+
+public struct Maps
+{
+    [NativeDisableParallelForRestriction] public NativeArray<float> HeightMap;
+    [NativeDisableParallelForRestriction] public NativeArray<Color> ColorMap;
+
+    public Maps(NativeArray<float> h, NativeArray<Color> c)
+    {
+        HeightMap = h;
+        ColorMap = c;
+    }
+    
+    public void Dispose()
+    {
+        ColorMap.Dispose();
+        HeightMap.Dispose();
+    }
+}</code></pre>
+                    </div>
+
+                    <h2>Explanation</h2>
+                    <p>
+                        To ensure high performance for real-time terrain generation, I designed a multi-stage system leveraging Unity’s Job System and Burst Compiler. The system is modular, scalable, and optimized for massive terrains with minimal GC pressure and high parallelism.
+                    </p>
+
+                    <h3 class="step-title">System Overview</h3>
+                    <p>The terrain generation process consists of several key stages, each managed as separate jobs for maximum performance:​</p>
+
+                    <ol class="tutorial-list">
+                        <li>
+                            <strong>Position Calculation Job (PositionJob)</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Input: Grid size (e.g., chunksPerAxis), spacing, and origin.​</li>
+                                <li>Output: <code>NativeArray&lt;Vector3&gt;</code> of world positions for noise sampling.</li>
+                                <li>Job Type: IJobParallelFor.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Noise Sampling Job (NoiseJob)​​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Input: Position array from PositionJob.​</li>
+                                <li>Output: <code>NativeArray&lt;float&gt;</code> of height values based on coherent noise (e.g., Perlin, Simplex).</li>
+                                <li>Parallelized: Yes, using IJobParallelFor with Burst for SIMD optimization.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Mesh Data Generation Job (MeshDataJob)​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Input: Heightmap array from NoiseJob.​</li>
+                                <li>Output: Vertices, normals, UVs, and triangle indices stored in NativeArrays.</li>
+                                <li>Optional: Includes LOD support or normal smoothing based on surrounding heights.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Mesh Application (Main Thread)​</strong>
+                            <ul class="sub-tutorial-list">
+                                <li>Once jobs are complete, the mesh data is marshaled back to the main thread to create a Unity Mesh.​</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3 class="step-title">Performance Features</h3>
+                    
+                    <ul class="tutorial-list bullet-list">
+                        <li><strong>Burst Compiler:</strong> All jobs are Burst-compiled, drastically reducing CPU usage and improving throughput via vectorization (SIMD).</li>
+                        <li><strong>Memory Layout:</strong> Using <code>NativeArray&lt;T&gt;</code> with deterministic memory allocation and disposal to avoid GC.</li>
+                        <li><strong>Parallelism:</strong> Heavily utilizes IJobParallelFor for maximum CPU core utilization.</li>
+                        <li><strong>Job Dependencies:</strong> JobHandle used to schedule dependent jobs cleanly without blocking the main thread.</li>
+                    </ul>
+
+                    <h3 class="step-title">Debug Tools</h3>
+                    
+                    <ul class="tutorial-list bullet-list">
+                        <li><strong>Gizmos:</strong> Debug mode includes position markers and height map visualization via Debug.DrawRay.</li>
+                        <li><strong>Timing:</strong> Custom profiler stopwatch to track job durations and bottlenecks.</li>
+                    </ul>
+                </article>  
+            </div>
+        </div>
+
+        <section class="newsletter-section">
+            <p class="newsletter-text">Stay updated with my latest experiments. Join the AW WorkLab Dispatch.</p>
+            <form class="contact-form newsletter-form">
+                <input type="email" required placeholder="example@email.com" aria-label="Email for newsletter">
+                <button type="submit" class="btn-send">SUBSCRIBE</button>
+            </form>
+        </section>
+
+        <nav class="post-navigation">
+            <a href="../portfolio/2025-04-16-autosave.html" class="prev-post"><i class="fas fa-chevron-left"></i> Autosave</a>
+            <a href="../portfolio/2025-07-23-interior-parallax-mapping.html" class="next-post">Interior Parallax Mapping <i class="fas fa-chevron-right"></i></a>
+        </nav>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/awworklab/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/awworklab/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ariiq-wicaksana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/awworklab" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@awworklab" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" aria-label="Close Lightbox"><i class="fas fa-times"></i></button>
+        
+        <div class="lightbox-content-wrapper">
+            <div class="lightbox-controls">
+                <button id="zoom-in" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                <button id="zoom-out" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                <button id="reset-zoom" title="Reset"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            
+            <div class="img-container">
+                <button id="lb-prev" class="lb-nav-btn">&#10094;</button>
+                <img id="lightbox-img" src="" alt="">
+                <button id="lb-next" class="lb-nav-btn">&#10095;</button>
+            </div>
+            
+            <div class="lb-footer">
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+                <div id="lb-number" class="lb-numbertext"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-glsl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-gdscript.min.js"></script>
+    <script>
+        // --- 1. NAVBAR LOGIC ---
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+        menuOpen.onclick = () => toggleMenu(true);
+        menuClose.onclick = () => toggleMenu(false);
+        overlay.onclick = () => toggleMenu(false);
+
+        // --- 2. LIGHTBOX & SLIDESHOW LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lbCaption = document.getElementById('lightbox-caption');
+        const lbNumber = document.getElementById('lb-number');
+        const btnPrev = document.getElementById('lb-prev');
+        const btnNext = document.getElementById('lb-next');
+
+        let currentZoom = 1, isDragging = false, startX, startY, translateX = 0, translateY = 0;
+        let currentList = [], currentIndex = 0;
+
+        const resetImageState = () => {
+            currentZoom = 1; translateX = 0; translateY = 0;
+            lightboxImg.style.transform = `translate(0, 0) scale(1)`;
+        };
+
+        const updatePopUp = () => {
+            const target = currentList[currentIndex];
+            lightboxImg.src = target.src;
+            lbCaption.innerText = target.alt || "AW WorkLab Project";
+            lbNumber.innerText = `${currentIndex + 1} / ${currentList.length}`;
+            resetImageState();
+        };
+
+        function openPopUp(list, index, isSlideshowMode) {
+            currentList = list;
+            currentIndex = index;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            const display = isSlideshowMode ? 'block' : 'none';
+            btnPrev.style.display = display;
+            btnNext.style.display = display;
+            lbNumber.style.display = display;
+            
+            updatePopUp();
+        }
+
+        const navigateLB = (step) => {
+            currentIndex = (currentIndex + step + currentList.length) % currentList.length;
+            updatePopUp();
+        };
+
+        // Event Listeners for Images
+        const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+        galleryImgs.forEach((img, i) => img.onclick = () => openPopUp(galleryImgs, i, false));
+
+        const slideshowContainers = document.querySelectorAll('.slideshow-container');
+        slideshowContainers.forEach((container) => {
+            // Ambil hanya gambar yang ada DI DALAM container ini saja
+            const imgsInThisContainer = Array.from(container.querySelectorAll('.mySlides img'));
+            
+            imgsInThisContainer.forEach((img, index) => {
+                img.style.cursor = 'pointer';
+                img.onclick = () => {
+                    // Kirim daftar gambar eksklusif milik kontainer ini ke Lightbox
+                    openPopUp(imgsInThisContainer, index, true);
+                };
+            });
+        });
+
+        btnPrev.onclick = (e) => { e.stopPropagation(); navigateLB(-1); };
+        btnNext.onclick = (e) => { e.stopPropagation(); navigateLB(1); };
+
+        // Zoom Logic
+        document.getElementById('zoom-in').onclick = () => { currentZoom += 0.2; updateTransform(); };
+        document.getElementById('zoom-out').onclick = () => { if(currentZoom > 1) currentZoom -= 0.2; updateTransform(); };
+        document.getElementById('reset-zoom').onclick = resetImageState;
+
+        const updateTransform = () => {
+            lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        };
+
+        // Dragging Logic
+        const startDrag = (e) => {
+            if (currentZoom > 1) {
+                isDragging = true;
+                
+                const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+                
+                startX = clientX - translateX;
+                startY = clientY - translateY;
+                
+                lightboxImg.style.cursor = 'grabbing';
+                lightboxImg.style.transition = 'none';
+            }
+        };
+
+        const moveDrag = (e) => {
+            if (!isDragging) return;
+            
+            
+            if (e.type.includes('touch')) e.preventDefault();
+
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            
+            translateX = clientX - startX;
+            translateY = clientY - startY;
+            
+            updateTransform();
+        };
+
+        const endDrag = () => {
+            isDragging = false;
+            if (lightboxImg) {
+                lightboxImg.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+                lightboxImg.style.transition = 'transform 0.2s ease';
+            }
+        };
+
+        lightboxImg.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', moveDrag);
+        window.addEventListener('mouseup', endDrag);
+
+        lightboxImg.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('touchmove', moveDrag, { passive: false });
+        window.addEventListener('touchend', endDrag);
+
+        // Close Lightbox
+        const closeLB = () => { lightbox.style.display = 'none'; document.body.style.overflow = 'auto'; };
+        document.querySelector('.lightbox-close').onclick = closeLB;
+        lightbox.onclick = (e) => { if(e.target === lightbox || e.target.classList.contains('img-container')) closeLB(); };
+
+        // --- 3. INLINE SLIDESHOW (Halaman Utama) ---
+        function initSlideshows() {
+            const containers = document.querySelectorAll('.slideshow-container');
+            containers.forEach((container) => {
+                // Simpan index masing-masing slideshow di dalam elemennya sendiri
+                container.dataset.currentIndex = 0;
+                showSpecificSlide(container, 0);
+            });
+        }
+
+        function showSpecificSlide(container, index) {
+            const slides = container.getElementsByClassName("mySlides");
+            if (slides.length === 0) return;
+
+            // Pastikan index berputar (looping)
+            let newIndex = index;
+            if (index >= slides.length) newIndex = 0;
+            if (index < 0) newIndex = slides.length - 1;
+
+            // Sembunyikan semua slide HANYA di dalam container ini
+            Array.from(slides).forEach(s => s.style.display = "none");
+            
+            // Tampilkan slide yang dituju
+            slides[newIndex].style.display = "block";
+            container.dataset.currentIndex = newIndex;
+        }
+
+        window.plusSlides = (n, btn) => {
+            const container = btn.closest('.slideshow-container');
+            const currentIndex = parseInt(container.dataset.currentIndex);
+            showSpecificSlide(container, currentIndex + n);
+        };
+
+        // Jalankan inisialisasi saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", initSlideshows);
+
+        // --- 4. PASSWORD LOGIC ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const contentArea = document.querySelector('.content');
+            const isProtected = contentArea.getAttribute('data-protected') === 'true';
+            
+            const guestArea = document.getElementById('guest-area');
+            const mainContent = document.getElementById('main-content');
+
+            if (isProtected) {
+                // Jika dikunci: Tampilkan area password, sembunyikan konten
+                guestArea.style.display = 'flex';
+                mainContent.style.display = 'none';
+            } else {
+                // Jika tidak dikunci: Sembunyikan area password, tampilkan konten langsung
+                guestArea.style.display = 'none';
+                mainContent.style.display = 'block';
+            }
+        });
+
+        function checkPassword() {
+            const passInput = document.getElementById('pass-input').value;
+            const correctPass = "privateproperty"; 
+            const guestArea = document.getElementById('guest-area');
+            const mainContent = document.getElementById('main-content');
+            const errorMsg = document.getElementById('error-msg');
+
+            if (passInput === correctPass) {
+                guestArea.style.display = 'none';
+                mainContent.style.display = 'block';
+                errorMsg.style.display = 'none';
+                window.scrollTo(0, 0);
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('pass-input').value = "";
+            }
+        }
+
+        // Menjalankan fungsi jika menekan tombol 'Enter'
+        document.getElementById('pass-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // --- 5. COPY CODE LOGIC ---
+        document.getElementById('copy-button').onclick = function() {
+            const code = document.getElementById('code-block').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                this.innerText = "Copied!";
+                this.classList.add('active-copy');
+                setTimeout(() => {
+                    this.innerText = "Copy";
+                    this.classList.remove('active-copy');
+                }, 2000);
+            });
+        };
+    </script>
+</body>
+</html>
