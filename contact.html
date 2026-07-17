@@ -40,7 +40,7 @@
         <div class="post-wrapper">
             <h1 class="page-title">Contact</h1>
             
-            <form class="contact-form" id="contact-form" action="#" method="POST" enctype="multipart/form-data">
+            <form class="contact-form" id="contact-form" action="https://aw-contact-form.awworklab.workers.dev/" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="email">Email <span>(required)</span></label>
                     <input type="email" id="email" name="email" required placeholder="example@email.com">
@@ -138,6 +138,49 @@
                 dropArea.style.backgroundColor = "transparent";
             }, false);
         });
+
+        // --- AJAX FORM SUBMISSION (CLOUDFLARE WORKER) ---
+        // Skrip baru diletakkan di bawah sini agar form tidak berpindah halaman saat diklik kirim
+        const form = document.getElementById("contact-form");
+        
+        async function handleSubmit(event) {
+            event.preventDefault(); // Menghentikan form agar tidak reload halaman
+            
+            const submitBtn = form.querySelector(".btn-send");
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Mengubah tombol menjadi mode loading/berputar
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i> SENDING...`;
+            
+            const data = new FormData(event.target);
+            
+            fetch(event.target.action, {
+                method: form.method,
+                body: data
+            }).then(response => {
+                if (response.ok) {
+                    // Jika Cloudflare Worker membalas dengan status sukses (200 OK)
+                    alert("Thank you! Your message has been sent successfully straight via Cloudflare.");
+                    form.reset(); // Kosongkan form kembali
+                    fileLabel.innerHTML = `<i class="fas fa-cloud-upload-alt"></i> <span>Choose files or drag them here</span>`;
+                    dropArea.classList.remove('selected');
+                } else {
+                    // Jika Worker menolak kiriman (misal ada field kosong)
+                    alert("Oops! Worker rejected the submission. Please check your data.");
+                }
+            }).catch(error => {
+                // Jika terjadi gangguan koneksi internet ke Worker
+                alert("Oops! There was a problem connecting to Cloudflare Workers.");
+            }).finally(() => {
+                // Mengembalikan tombol ke teks awal setelah proses selesai
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            });
+        }
+        
+        // Memasang fungsi pengiriman halus di atas ke form HTML kamu
+        form.addEventListener("submit", handleSubmit);
     </script>
 
 </body>

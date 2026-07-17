@@ -82,6 +82,420 @@
                         <li>Game Producer</li>
                         <li>Technical Artist</li>
                     </ul>
+
+                    <h2>2D Active Ragdoll</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/xItlsfAlBSw?si=L5maxQnciVaMqwsd" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h3 class="step-title">Shader Graph</h3>
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Transparent_Shader.png" alt="Transparent Shader Graph" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h3 class="step-title">Script</h3>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <span>Copy Animation script.cs</span>
+                            <button class="copy-btn" id="copy-button">Copy</button>
+                        </div>
+                        <pre><code class="language-csharp" id="code-block">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class copyAnim : MonoBehaviour
+{
+    public Transform target;  // Reference to the source part
+    private Rigidbody2D rb2d;
+    private bool isDismembered = false; // To check if part is dismembered
+    
+    public float forceNormal = 500f;
+    public float forceGrab = 700f;
+    public float forceAiming = 300f;
+    public float forceCircular = 100f;
+    private float currentForce;
+
+    private enum ForceType
+    {
+        Normal,
+        Grab,
+        Aiming,
+        Circular
+    }
+
+    private ForceType currentForceType = ForceType.Normal;
+
+    void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+        SetForce();
+    }
+
+    void FixedUpdate()
+    {
+        if (!isDismembered)  // Only copy rotation if not dismembered
+        {
+            float targetRot = target.eulerAngles.z;
+            rb2d.MoveRotation(Mathf.LerpAngle(rb2d.rotation, targetRot, currentForce * Time.fixedDeltaTime));
+        }
+        
+        CheckForceInput();
+    }
+
+    void CheckForceInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            SetForceType(ForceType.Normal);
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            SetForceType(ForceType.Grab);
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+            SetForceType(ForceType.Aiming);
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+            SetForceType(ForceType.Circular);
+    }
+
+    void SetForceType(ForceType newForceType)
+    {
+        currentForceType = newForceType;
+        SetForce();
+    }
+
+    void SetForce()
+    {
+        switch (currentForceType)
+        {
+            case ForceType.Normal:
+                currentForce = forceNormal;
+                break;
+            case ForceType.Grab:
+                currentForce = forceGrab;
+                break;
+            case ForceType.Aiming:
+                currentForce = forceAiming;
+                break;
+            case ForceType.Circular:
+                currentForce = forceCircular;
+                break;
+        }
+    }
+
+    // Call this method when the body part is dismembered
+    public void Dismember()
+    {
+        isDismembered = true;
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <span>No self collision script.cs</span>
+                            <button class="copy-btn" id="copy-button">Copy</button>
+                        </div>
+                        <pre><code class="language-csharp" id="code-block">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class noSelfColl : MonoBehaviour
+{
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Collider2D[] colliders = transform.GetComponentsInChildren<Collider2D>();
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            for (int k = i + 1; k < colliders.Length; k++)
+            {
+                Physics2D.IgnoreCollision(colliders[i], colliders[k]);
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <h2>Fire Fullscreen Shader</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/Dzc-KCxs7Ew?si=9LOkYFUBVNNYy6Dc" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="step-title">Shader Graph</h3>
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Fire_Fullscreen.png" alt="Fire Fullscreen Shader Graph" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h2>Ice Fullscreen Shader</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/Dzc-KCxs7Ew?si=9LOkYFUBVNNYy6Dc" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="step-title">Shader Graph</h3>
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Ice_Fullscreen.png" alt="Ice Fullscreen Shader Graph" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+                    <h2>Shockwave</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/UXcMgQw2aAA?si=VmEd2b_KVSIDCQeV" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h3 class="step-title">Shader Graph</h3>
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/ShockWaveScreen.png" alt="Shockwave Shader Graph" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h3 class="step-title">Script</h3>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <span>ShockwaveManager.cs</span>
+                            <button class="copy-btn" id="copy-button">Copy</button>
+                        </div>
+                        <pre><code class="language-csharp" id="code-block">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ShockwaveManager : MonoBehaviour
+{
+    [SerializeField] private float shockWaveTime = 0.75f;
+    private Coroutine shockWaveCourotine;
+    private Material material;
+    private static int waveDistanceFromCenter = Shader.PropertyToID("_WaveDistanceFromCenter");
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            CallShockWave();
+        } 
+    }
+
+    private void Awake ()
+    {
+        material = GetComponent<SpriteRenderer>().material;
+    }
+
+    private void CallShockWave()
+    {
+        shockWaveCourotine = StartCoroutine(ShockWaveAction(-0.1f, 1f));
+    }
+
+    private IEnumerator ShockWaveAction (float startPos, float endPos)
+    {
+        material.SetFloat(waveDistanceFromCenter, startPos);
+
+        float lerpedAmount = 0f;
+
+        float elapsedTime = 0f;
+        while (elapsedTime < shockWaveTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            lerpedAmount = Mathf.Lerp(startPos, endPos, (elapsedTime / shockWaveTime));
+            material.SetFloat(waveDistanceFromCenter, lerpedAmount);
+
+            yield return null;
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <h2>Portal</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/_43z6eMXKpw?si=kp04K4Ww9eogsM8u" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h3 class="step-title">Shader Graph</h3>
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Portal.png" alt="Portal Shader Graph" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h2>Pixel Perfect Effect</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/TPaEYpwZmLI?si=DfgQfsg_JEg-WBte" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h3 class="step-title">Shader</h3>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <span>Pixelation.shader</span>
+                            <button class="copy-btn" id="copy-button">Copy</button>
+                        </div>
+                        <pre><code class="language-glsl" id="code-block">
+Shader "Hidden/Pixelation"
+{
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "white" {}
+        _pixels ("Resolution", int) = 512
+        _pw ("Pixel Width", float) = 64
+        _ph ("Pixel Height", float) = 64
+    }
+    SubShader
+    {
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            float _pixels;
+            float _pw;
+            float _ph;
+            float _dx;
+            float _dy;
+            sampler2D _MainTex;
+
+            fixed4 frag (v2f i) : SV_Target
+            {
+                _dx = _pw * (1 / _pixels);
+                _dy = _ph * (1 / _pixels);
+                float2 coord = float2(_dx * floor (i.uv.x / _dx), _dy * floor (i.uv.y / _dy));
+                fixed4 col = tex2D(_MainTex, coord);
+                return col;
+            }
+            ENDCG
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="step-title">Script</h3>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <span>PixelationHandler.cs</span>
+                            <button class="copy-btn" id="copy-button">Copy</button>
+                        </div>
+                        <pre><code class="language-csharp" id="code-block">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+[ExecuteInEditMode]
+public class PixelationHandler : MonoBehaviour
+{
+    public Material effectMaterial;
+
+    private void OnRenderImage(RenderTexture src, RenderTexture dest) {
+        Graphics.Blit(src, dest, effectMaterial);
+    }
+}</code></pre>
+                    </div>
+
+                    <h2>Monster Trail</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/2KVO26wJ-Vk?si=i2c1c3yWhWKlGA_p" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h2>Energy Ring</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/yKRjPAJ33XQ?si=qYEN4DUnneo_2fit" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h2>Jetpack</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/vit9Yrs_iZQ?si=FmMW7WuCcBARUnCM" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h2>Grab</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/hanaR3ZWPQs?si=J9cfoOPBSH5X3Dn9" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <h2>Radar</h2>
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/TAfDHKNIKIY?si=avaUk-34nHpIYAMe" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                 </article>  
             </div>
         </div>
