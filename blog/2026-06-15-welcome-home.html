@@ -409,13 +409,15 @@
 
         if (newsletterForm) {
             newsletterForm.addEventListener("submit", async function(event) {
+                // PERBAIKAN 1: Letakkan pencegah reload di baris paling atas agar aman dari eror di bawahnya
                 event.preventDefault();
 
                 const submitBtn = newsletterForm.querySelector(".btn-send");
                 const originalBtnText = submitBtn.innerHTML;
 
+                // PERBAIKAN 2: Menggunakan teks loading standar tanpa ketergantungan ikon eksternal agar anti-gagal
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
+                submitBtn.innerText = "SUBS..."; 
 
                 const data = new FormData(event.target);
 
