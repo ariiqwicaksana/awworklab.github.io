@@ -391,7 +391,43 @@
             }
         });
 
-        // --- 5. COPY CODE LOGIC ---
+        // --- 5. NEWSLETTER LOGIC ---
+        const newsletterForm = document.getElementById("newsletter-form");
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener("submit", async function(event) {
+                event.preventDefault();
+
+                const submitBtn = newsletterForm.querySelector(".btn-send");
+                const originalBtnText = submitBtn.innerHTML;
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
+
+                const data = new FormData(event.target);
+
+                try {
+                    const response = await fetch(event.target.action, {
+                        method: event.target.method,
+                        body: data
+                    });
+
+                    if (response.ok) {
+                        alert("Awesome! You've successfully subscribed to AW WorkLab Dispatch.");
+                        newsletterForm.reset();
+                    } else {
+                        alert("Oops! Failed to subscribe. Please try again.");
+                    }
+                } catch (error) {
+                    alert("Oops! Trouble connecting to the server.");
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        }
+
+        // --- 6. COPY CODE LOGIC ---
         document.getElementById('copy-button').onclick = function() {
             const code = document.getElementById('code-block').innerText;
             navigator.clipboard.writeText(code).then(() => {
@@ -403,47 +439,6 @@
                 }, 2000);
             });
         };
-
-        // --- 6. NEWSLETTER LOGIC ---
-        window.addEventListener("load", function() {
-            const newsletterForm = document.getElementById("newsletter-form");
-
-            if (newsletterForm) {
-                newsletterForm.addEventListener("submit", async function(event) {
-                    // Kunci browser di sini agar tidak reload/redirect
-                    event.preventDefault();
-
-                    const submitBtn = newsletterForm.querySelector(".btn-send");
-                    const originalBtnText = submitBtn.innerHTML;
-
-                    submitBtn.disabled = true;
-                    submitBtn.innerText = "SUBS...";
-
-                    const data = new FormData(event.target);
-
-                    try {
-                        const response = await fetch(event.target.action, {
-                            method: event.target.method,
-                            body: data
-                        });
-
-                        if (response.ok) {
-                            alert("Awesome! You've successfully subscribed to AW WorkLab Dispatch.");
-                            newsletterForm.reset();
-                        } else {
-                            alert("Oops! Failed to subscribe. Please try again.");
-                        }
-                    } catch (error) {
-                        alert("Oops! Trouble connecting to the server.");
-                    } finally {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalBtnText;
-                    }
-                });
-            } else {
-                console.error("Newsletter form tidak ditemukan di DOM!");
-            }
-        });
     </script>
 </body>
 </html>
