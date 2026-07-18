@@ -405,42 +405,45 @@
         };
 
         // --- 6. NEWSLETTER LOGIC ---
-        const newsletterForm = document.getElementById("newsletter-form");
+        window.addEventListener("load", function() {
+            const newsletterForm = document.getElementById("newsletter-form");
 
-        if (newsletterForm) {
-            newsletterForm.addEventListener("submit", async function(event) {
-                // PERBAIKAN 1: Letakkan pencegah reload di baris paling atas agar aman dari eror di bawahnya
-                event.preventDefault();
+            if (newsletterForm) {
+                newsletterForm.addEventListener("submit", async function(event) {
+                    // Kunci browser di sini agar tidak reload/redirect
+                    event.preventDefault();
 
-                const submitBtn = newsletterForm.querySelector(".btn-send");
-                const originalBtnText = submitBtn.innerHTML;
+                    const submitBtn = newsletterForm.querySelector(".btn-send");
+                    const originalBtnText = submitBtn.innerHTML;
 
-                // PERBAIKAN 2: Menggunakan teks loading standar tanpa ketergantungan ikon eksternal agar anti-gagal
-                submitBtn.disabled = true;
-                submitBtn.innerText = "SUBS..."; 
+                    submitBtn.disabled = true;
+                    submitBtn.innerText = "SUBS...";
 
-                const data = new FormData(event.target);
+                    const data = new FormData(event.target);
 
-                try {
-                    const response = await fetch(event.target.action, {
-                        method: event.target.method,
-                        body: data
-                    });
+                    try {
+                        const response = await fetch(event.target.action, {
+                            method: event.target.method,
+                            body: data
+                        });
 
-                    if (response.ok) {
-                        alert("Awesome! You've successfully subscribed to AW WorkLab Dispatch.");
-                        newsletterForm.reset();
-                    } else {
-                        alert("Oops! Failed to subscribe. Please try again.");
+                        if (response.ok) {
+                            alert("Awesome! You've successfully subscribed to AW WorkLab Dispatch.");
+                            newsletterForm.reset();
+                        } else {
+                            alert("Oops! Failed to subscribe. Please try again.");
+                        }
+                    } catch (error) {
+                        alert("Oops! Trouble connecting to the server.");
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
                     }
-                } catch (error) {
-                    alert("Oops! Trouble connecting to the server.");
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                }
-            });
-        }
+                });
+            } else {
+                console.error("Newsletter form tidak ditemukan di DOM!");
+            }
+        });
     </script>
 </body>
 </html>
