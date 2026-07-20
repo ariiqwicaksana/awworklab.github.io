@@ -496,8 +496,8 @@ public class Glitch : MonoBehaviour
 
         <section class="newsletter-section">
             <p class="newsletter-text">Stay updated with my latest experiments. Join the AW WorkLab Dispatch.</p>
-            <form class="contact-form newsletter-form">
-                <input type="email" required placeholder="example@email.com" aria-label="Email for newsletter">
+            <form class="contact-form newsletter-form" id="newsletter-form" action="https://aw-newsletter-form.awworklab.workers.dev/" method="POST">
+                <input type="email" name="email" required placeholder="example@email.com" aria-label="Email for newsletter">
                 <button type="submit" class="btn-send">SUBSCRIBE</button>
             </form>
         </section>
@@ -767,7 +767,43 @@ public class Glitch : MonoBehaviour
             }
         });
 
-        // --- 5. COPY CODE LOGIC ---
+        // --- 5. NEWSLETTER LOGIC ---
+        const newsletterForm = document.getElementById("newsletter-form");
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener("submit", async function(event) {
+                event.preventDefault();
+
+                const submitBtn = newsletterForm.querySelector(".btn-send");
+                const originalBtnText = submitBtn.innerHTML;
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
+
+                const data = new FormData(event.target);
+
+                try {
+                    const response = await fetch(event.target.action, {
+                        method: event.target.method,
+                        body: data
+                    });
+
+                    if (response.ok) {
+                        alert("Awesome! You've successfully subscribed to AW WorkLab Dispatch.");
+                        newsletterForm.reset();
+                    } else {
+                        alert("Oops! Failed to subscribe. Please try again.");
+                    }
+                } catch (error) {
+                    alert("Oops! Trouble connecting to the server.");
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        }
+
+        // --- 6. COPY CODE LOGIC ---
         document.getElementById('copy-button').onclick = function() {
             const code = document.getElementById('code-block').innerText;
             navigator.clipboard.writeText(code).then(() => {

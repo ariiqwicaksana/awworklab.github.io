@@ -38,7 +38,7 @@
         <div class="nav-overlay" id="nav-overlay"></div>
     </header>
 
-    <main class="content" data-protected="false">
+    <main class="content" data-protected="true">
         <div id="guest-area" class="guest-area">
             <div class="guest-content">
                 <h1 class="guest-title">Guest Area</h1>
@@ -74,14 +74,120 @@
                         <p>Tools : Unity</p>
                     </div>
                     <p>Cel shader with a custom lighting and support for multiple lights.</p>
+                    <h2>Material</h2>
+
+                    <div class="single-image-container">
+                        <div class="image-wrapper">
+                            <img src="../assets/Screenshot from 2026-07-20 18-24-11.png" alt="Material" onclick="openPopUp([this], 0, false)">
+                        </div>
+                    </div>
+
+                    <h2>Shader</h2>
+
+                    <div class="gallery-container">
+                        <div class="gallery-item"><img src="../assets/CelShadingTextures.png" alt="Cel Shade Shader Graph"></div>
+                        <div class="gallery-item"><img src="../assets/CalcAdditionalDiffuse.png" alt="Calc Additional Diffuse Shader Graph"></div>
+                        <div class="gallery-item"><img src="../assets/CalcAdditionalSpecular.png" alt="Calc Additional Specular Shader Graph"></div>
+                        <div class="gallery-item"><img src="../assets/GetAdditionalLight.png" alt="Get Additional Light Shader Graph"></div>
+                        <div class="gallery-item"><img src="../assets/GetMainLight.png" alt="Get Main Light Shader Graph"></div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="code-header">
+                            <span>Lighting.hlsl</span>
+                            <button class="copy-btn" id="copy-button">Copy</button>
+                        </div>
+                        <pre><code class="language-glsl" id="code-block">
+void MainLight_float(float3 WorldPos, out float3 Direction, out float3 Color, 
+	out float DistanceAtten, out float ShadowAtten)
+{
+#ifdef SHADERGRAPH_PREVIEW
+    Direction = normalize(float3(0.5f, 0.5f, 0.25f));
+    Color = float3(1.0f, 1.0f, 1.0f);
+    DistanceAtten = 1.0f;
+    ShadowAtten = 1.0f;
+#else
+    float4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
+    Light mainLight = GetMainLight(shadowCoord);
+ 
+    Direction = mainLight.direction;
+    Color = mainLight.color;
+    DistanceAtten = mainLight.distanceAttenuation;
+    ShadowAtten = mainLight.shadowAttenuation;
+#endif
+}
+
+void MainLight_half(half3 WorldPos, out half3 Direction, out half3 Color, 
+	out half DistanceAtten, out half ShadowAtten)
+{
+#ifdef SHADERGRAPH_PREVIEW
+    Direction = normalize(half3(0.5f, 0.5f, 0.25f));
+    Color = half3(1.0f, 1.0f, 1.0f);
+    DistanceAtten = 1.0f;
+    ShadowAtten = 1.0f;
+#else
+    half4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
+    Light mainLight = GetMainLight(shadowCoord);
+ 
+    Direction = mainLight.direction;
+    Color = mainLight.color;
+    DistanceAtten = mainLight.distanceAttenuation;
+    ShadowAtten = mainLight.shadowAttenuation;
+#endif
+}
+
+void AdditionalLight_float(float3 WorldPos, int Index, out float3 Direction, 
+	out float3 Color, out float DistanceAtten, out float ShadowAtten)
+{
+    Direction = normalize(float3(0.5f, 0.5f, 0.25f));
+    Color = float3(0.0f, 0.0f, 0.0f);
+    DistanceAtten = 0.0f;
+    ShadowAtten = 0.0f;
+
+#ifndef SHADERGRAPH_PREVIEW
+    int pixelLightCount = GetAdditionalLightsCount();
+    if(Index < pixelLightCount)
+    {
+        Light light = GetAdditionalLight(Index, WorldPos);
+    
+        Direction = light.direction;
+        Color = light.color;
+        DistanceAtten = light.distanceAttenuation;
+        ShadowAtten = light.shadowAttenuation;
+    }
+#endif
+}
+
+void AdditionalLight_half(half3 WorldPos, int Index, out half3 Direction,
+	out half3 Color, out half DistanceAtten, out half ShadowAtten)
+{
+	Direction = normalize(half3(0.5f, 0.5f, 0.25f));
+	Color = half3(0.0f, 0.0f, 0.0f);
+	DistanceAtten = 0.0f;
+	ShadowAtten = 0.0f;
+
+#ifndef SHADERGRAPH_PREVIEW
+	int pixelLightCount = GetAdditionalLightsCount();
+	if (Index < pixelLightCount)
+	{
+		Light light = GetAdditionalLight(Index, WorldPos);
+
+		Direction = light.direction;
+		Color = light.color;
+		DistanceAtten = light.distanceAttenuation;
+		ShadowAtten = light.shadowAttenuation;
+	}
+#endif
+}</code></pre>
+                    </div>
                 </article>  
             </div>
         </div>
 
         <section class="newsletter-section">
             <p class="newsletter-text">Stay updated with my latest experiments. Join the AW WorkLab Dispatch.</p>
-            <form class="contact-form newsletter-form">
-                <input type="email" required placeholder="example@email.com" aria-label="Email for newsletter">
+            <form class="contact-form newsletter-form" id="newsletter-form" action="https://aw-newsletter-form.awworklab.workers.dev/" method="POST">
+                <input type="email" name="email" required placeholder="example@email.com" aria-label="Email for newsletter">
                 <button type="submit" class="btn-send">SUBSCRIBE</button>
             </form>
         </section>
@@ -351,7 +457,43 @@
             }
         });
 
-        // --- 5. COPY CODE LOGIC ---
+        // --- 5. NEWSLETTER LOGIC ---
+        const newsletterForm = document.getElementById("newsletter-form");
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener("submit", async function(event) {
+                event.preventDefault();
+
+                const submitBtn = newsletterForm.querySelector(".btn-send");
+                const originalBtnText = submitBtn.innerHTML;
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
+
+                const data = new FormData(event.target);
+
+                try {
+                    const response = await fetch(event.target.action, {
+                        method: event.target.method,
+                        body: data
+                    });
+
+                    if (response.ok) {
+                        alert("Awesome! You've successfully subscribed to AW WorkLab Dispatch.");
+                        newsletterForm.reset();
+                    } else {
+                        alert("Oops! Failed to subscribe. Please try again.");
+                    }
+                } catch (error) {
+                    alert("Oops! Trouble connecting to the server.");
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        }
+
+        // --- 6. COPY CODE LOGIC ---
         document.getElementById('copy-button').onclick = function() {
             const code = document.getElementById('code-block').innerText;
             navigator.clipboard.writeText(code).then(() => {
