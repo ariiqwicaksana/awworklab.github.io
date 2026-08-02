@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AW WorkLab - Solo Game Developer & Freelance Portfolio Blog">
+    <title>Blogs | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="index.html">Home</a>
+            <a href="blogs.html" class="active">Blogs</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content">
+        <h1 style="display: none;">AW WorkLab Blog</h1>
+
+        <div class="blog-grid">
+            <article class="blog-card">
+                <a href="blog/2026-06-15-welcome-home.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/logo.png" alt="Welcome Home!">
+                    </div>
+                    <time datetime="2026-06-15">Jun 15, 2026</time>
+                    <h2>Welcome Home!</h2>
+                </a>
+            </article>
+
+            <article class="blog-card">
+                <a href="blog/2024-06-28-file-naming-conventions.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/file image.jpeg" alt="File Naming Conventions">
+                    </div>
+                    <time datetime="2024-06-28">Jun 28, 2024</time>
+                    <h2>File Naming Conventions</h2>
+                </a>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/awworklab/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/awworklab/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ariiq-wicaksana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/awworklab" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@awworklab" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+
+        menuOpen.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        overlay.addEventListener('click', () => toggleMenu(false));
+    </script>
+
+</body>
+</html>

@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AW WorkLab - Solo Game Developer & Freelance Portfolio Blog">
+    <meta name="description" content="Koleksi proyek game development, shader, dan tools oleh AW WorkLab.">
     <title>Home | AW WorkLab</title>
     
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -30,7 +29,7 @@
             </button>
             
             <a href="index.html" class="active">Home</a>
-            <a href="works.html">Works</a>
+            <a href="blogs.html">Blogs</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </nav>
@@ -39,16 +38,477 @@
     </header>
 
     <main class="content">
-        <h1 style="display: none;">AW WorkLab Blog</h1>
+        <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="cat-portfolio">Portfolio</button>
+            <button class="filter-btn" data-filter="cat-games">Games</button>
+            <button class="filter-btn" data-filter="cat-other">Other Works</button>
 
-        <div class="blog-grid">
-            <article class="blog-card">
-                <a href="blog/2026-06-15-welcome-home.html" class="post-link">
+            <div class="sort-wrapper">
+                <button class="filter-btn sort-btn" id="sort-toggle">
+                    <i class="fas fa-sort"></i> <span id="sort-label">Sort: Default</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="blog-grid portfolio-grid" id="portfolio-grid">
+            <article class="blog-card filter-item cat-games">
+                <a href="games/2025-11-01-cool-as-fridge.html" class="post-link">
                     <div class="image-wrapper">
-                        <img src="assets/logo.png" alt="Welcome Home!">
+                        <img src="assets/cover.png" alt="Cool as Fridge">
                     </div>
-                    <time datetime="2026-06-15">Jun 15, 2026</time>
-                    <h2>Welcome Home!</h2>
+                    <time datetime="2025-11-01">Nov 1, 2025</time>
+                    <h2>Cool as Fridge</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="games/2023-06-26-tales-of-the-book.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/cover (2).png" alt="Tales of the Book">
+                    </div>
+                    <time datetime="2023-06-26">Jun 26, 2023</time>
+                    <h2>Tales of the Book</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="games/2025-01-26-deep-dive-rumble.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/d6a7ebbd-dee8-4093-91eb-437812086884.jpeg" alt="Deep Dive Rumble">
+                    </div>
+                    <time datetime="2025-01-26">Jan 26, 2025</time>
+                    <h2>Deep Dive Rumble</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="games/2026-07-04-quartlane.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/WhatsApp Image 2026-07-13 at 14.13.20.jpeg" alt="Quartlane">
+                    </div>
+                    <time datetime="2026-07-04">Jul 4, 2026</time>
+                    <h2>Quartlane</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-09-19-grass-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260207-173034.jpg" alt="Grass Shader">
+                    </div>
+                    <time datetime="2025-09-19">Sep 19, 2025</time>
+                    <h2>Grass Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-04-16-terrain-generator.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2024-07-02 08-49-13.png" alt="Terrain Generator">
+                    </div>
+                    <time datetime="2025-04-16">Apr 16, 2025</time>
+                    <h2>Terrain Generator</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-07-23-pixel-art-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2025-02-01 19-14-21.png" alt="Pixel Art Shader">
+                    </div>
+                    <time datetime="2025-07-23">Jul 23, 2025</time>
+                    <h2>Pixel Art Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-12-05-grass-cel-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260613-100720.jpg" alt="Grass Cel Shader">
+                    </div>
+                    <time datetime="2025-12-05">Dec 5, 2025</time>
+                    <h2>Grass Cel Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-04-16-autosave.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2024-07-02 10-54-16.png" alt="Autosave">
+                    </div>
+                    <time datetime="2025-04-16">Apr 16, 2025</time>
+                    <h2>Autosave</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-12-19-sprite-directional-billboarding.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2024-07-08 21-51-41.png" alt="Sprite Directional Billboarding">
+                    </div>
+                    <time datetime="2024-12-19">Dec 19, 2024</time>
+                    <h2>Sprite Directional Billboarding</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-02-18-procedural-placement.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/HighresScreenshot00001.png" alt="Procedural Placement">
+                    </div>
+                    <time datetime="2024-02-18">Feb 18, 2024</time>
+                    <h2>Procedural Placement</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-04-16-pixel-art-effect.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Image Sequence_004_0000.png" alt="Pixel Art Effect">
+                    </div>
+                    <time datetime="2025-04-16">Apr 16, 2025</time>
+                    <h2>Pixel Art Effect</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-12-05-cel-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260613-100800.jpg" alt="Cel Shader">
+                    </div>
+                    <time datetime="2025-12-05">Dec 5, 2025</time>
+                    <h2>Cel Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="games/2024-11-01-gone-astray.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/goneastraycover.png" alt="Gone Astray">
+                    </div>
+                    <time datetime="2024-11-01">Nov 1, 2024</time>
+                    <h2>Gone Astray</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-09-30-game-launcher.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2025-02-22 20-15-53.png" alt="Game Launcher">
+                    </div>
+                    <time datetime="2025-09-30">Sep 30, 2025</time>
+                    <h2>Game Launcher</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-11-01-2d-active-ragdoll.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260514-184601.jpg" alt="2D Active Ragdoll">
+                    </div>
+                    <time datetime="2024-11-01">Nov 1, 2024</time>
+                    <h2>2D Active Ragdoll</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2023-11-18-ready-rig-character.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/thumbnail 1.PNG" alt="Ready Rig Character">
+                    </div>
+                    <time datetime="2023-11-18">Nov 18, 2023</time>
+                    <h2>Ready Rig Character</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-07-23-toon-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2025-01-31 19-33-45.png" alt="Toon Shader">
+                    </div>
+                    <time datetime="2025-07-23">Jul 23, 2025</time>
+                    <h2>Toon Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-04-16-slash-vfx.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Image Sequence_003_0000.png" alt="Slash VFX">
+                    </div>
+                    <time datetime="2025-04-16">Apr 16, 2025</time>
+                    <h2>Slash VFX</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-04-16-glitching-hologram.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Image Sequence_002_0000.png" alt="Glitching Hologram">
+                    </div>
+                    <time datetime="2025-04-16">Apr 16, 2025</time>
+                    <h2>Glitching Hologram</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-12-05-water-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260613-100542.jpg" alt="Water Shader">
+                    </div>
+                    <time datetime="2025-12-05">Dec 5, 2025</time>
+                    <h2>Water Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-12-05-tree-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260613-100656.jpg" alt="Tree Shader">
+                    </div>
+                    <time datetime="2025-12-05">Dec 5, 2025</time>
+                    <h2>Tree Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-02-18-construction-tool.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/HighresScreenshot00002.png" alt="Construction Tool">
+                    </div>
+                    <time datetime="2024-02-18">Feb 18, 2024</time>
+                    <h2>Construction Tool</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-02-18-sword-trail.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/HighresScreenshot00008.png" alt="Sword Trail">
+                    </div>
+                    <time datetime="2024-02-18">Feb 18, 2024</time>
+                    <h2>Sword Trail</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-02-18-hologram.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/HighresScreenshot00000.png" alt="Hologram">
+                    </div>
+                    <time datetime="2024-02-18">Feb 18, 2024</time>
+                    <h2>Hologram</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-04-16-procedural-animation.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2024-07-02 08-34-05.png" alt="Procedural Animation">
+                    </div>
+                    <time datetime="2025-04-16">Apr 16, 2025</time>
+                    <h2>Procedural Animation</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-11-01-fire-ice-fullscreen-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260514-184529.jpg" alt="Fire/Ice Fullscreen Shader">
+                    </div>
+                    <time datetime="2024-11-01">Nov 1, 2024</time>
+                    <h2>Fire/Ice Fullscreen Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-11-01-shockwave.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260514-184419.jpg" alt="Shockwave">
+                    </div>
+                    <time datetime="2024-11-01">Nov 1, 2024</time>
+                    <h2>Shockwave</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-11-01-portal.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260514-184318.jpg" alt="Portal">
+                    </div>
+                    <time datetime="2024-11-01">Nov 1, 2024</time>
+                    <h2>Portal</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-11-01-pixel-perfect-effect.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260514-184454.jpg" alt="Pixel Perfect Effect">
+                    </div>
+                    <time datetime="2024-11-01">Nov 1, 2024</time>
+                    <h2>Pixel Perfect Effect</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-07-23-water-physics.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260207-173052.jpg" alt="Water Physics">
+                    </div>
+                    <time datetime="2025-07-23">Jul 23, 2025</time>
+                    <h2>Water Physics</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-07-23-car-physics.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2025-01-31 14-56-35.png" alt="Car Physics">
+                    </div>
+                    <time datetime="2025-07-23">Jul 23, 2025</time>
+                    <h2>Car Physics</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-12-05-wall-cutout-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260613-100644.jpg" alt="Wall Cutout Shader">
+                    </div>
+                    <time datetime="2025-12-05">Dec 5, 2025</time>
+                    <h2>Wall Cutout Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-12-05-scrolling-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260613-100706.jpg" alt="Scrolling Shader">
+                    </div>
+                    <time datetime="2025-12-05">Dec 5, 2025</time>
+                    <h2>Scrolling Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2025-07-23-interior-parallax-mapping.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Screenshot from 2025-01-31 14-13-43.png" alt="Interior Parallax Mapping">
+                    </div>
+                    <time datetime="2025-07-23">Jul 23, 2025</time>
+                    <h2>Interior Parallax Mapping</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="games/2024-09-15-song-of-plants.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/cover (1).png" alt="Song of Plants">
+                    </div>
+                    <time datetime="2024-09-15">Sep 15, 2024</time>
+                    <h2>Song of Plants</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-09-15-trail-and-particle-collections.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/VideoCapture_20260514-184254.jpg" alt="Trail & Particle Collections">
+                    </div>
+                    <time datetime="2024-09-15">Sep 15, 2024</time>
+                    <h2>Trail & Particle Collections</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="portfolio/2024-02-18-pixel-art-post-processing-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/HighresScreenshot11111.png" alt="Pixel Art Post-processing Shader">
+                    </div>
+                    <time datetime="2024-02-18">Feb 18, 2024</time>
+                    <h2>Pixel Art Post-processing Shader</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="games/2023-02-05-mochi-escape-from-cave.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/GameJam 11_07_2023 00.11_edited.png" alt="Mochi Escape from Cave">
+                    </div>
+                    <time datetime="2023-02-05">Feb 5, 2023</time>
+                    <h2>Mochi Escape from Cave</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="otherworks/2023-12-18-ui-game-mockup.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Image0316.png" alt="UI Game Mockup">
+                    </div>
+                    <time datetime="2023-12-18">Dec 18, 2023</time>
+                    <h2>UI Game Mockup</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="otherworks/2023-08-03-fps-level-design.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Level Design Learning 03_08_2023 20.25.41.png" alt="FPS Level Design">
+                    </div>
+                    <time datetime="2023-08-03">Aug 3, 2023</time>
+                    <h2>FPS Level Design</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="otherworks/2023-08-07-puzzle-platformer-level-design.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/18.png" alt="Puzzle Platformer Level Design">
+                    </div>
+                    <time datetime="2023-08-07">Aug 7, 2023</time>
+                    <h2>Puzzle Platformer Level Design</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="otherworks/2024-04-23-web-design.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/landingpage.lobby.png" alt="Web Design">
+                    </div>
+                    <time datetime="2024-04-23">Apr 23, 2024</time>
+                    <h2>Web Design</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="otherworks/2022-11-27-coding-hub.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Introduction.png" alt="Coding Hub">
+                    </div>
+                    <time datetime="2022-11-27">Nov 27, 2022</time>
+                    <h2>Coding Hub</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="otherworks/2024-07-17-art-and-design-collections.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Green Circle.jpg" alt="Art & Design Collections">
+                    </div>
+                    <time datetime="2024-07-17">Jul 17, 2024</time>
+                    <h2>Art & Design Collections</h2>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="otherworks/2023-03-26-flutter-calculator.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="assets/Flutter Calculator.jpg" alt="Flutter Calculator">
+                    </div>
+                    <time datetime="2023-03-26">Mar 26, 2023</time>
+                    <h2>Flutter Calculator</h2>
                 </a>
             </article>
         </div>
@@ -66,6 +526,7 @@
     </footer>
 
     <script>
+        // --- NAVBAR LOGIC ---
         const menuOpen = document.getElementById('menu-open');
         const menuClose = document.getElementById('menu-close');
         const sideMenu = document.getElementById('side-menu');
@@ -77,9 +538,76 @@
             document.body.style.overflow = isOpen ? 'hidden' : 'auto';
         };
 
-        menuOpen.addEventListener('click', () => toggleMenu(true));
-        menuClose.addEventListener('click', () => toggleMenu(false));
-        overlay.addEventListener('click', () => toggleMenu(false));
+        menuOpen.onclick = () => toggleMenu(true);
+        menuClose.onclick = () => toggleMenu(false);
+        overlay.onclick = () => toggleMenu(false);
+
+        // --- FILTER & SORT LOGIC ---
+        const grid = document.getElementById('portfolio-grid');
+        const filterBtns = document.querySelectorAll('.filter-btn:not(.sort-btn)');
+        const sortBtn = document.getElementById('sort-toggle');
+        const sortLabel = document.getElementById('sort-label');
+        
+        // Simpan urutan awal HTML (Default Order)
+        const originalItems = Array.from(grid.querySelectorAll('.filter-item'));
+
+        let currentFilter = 'all';
+        let currentSort = 'default'; // 'default' atau 'date'
+
+        // Fungsi Render ulang tampilan (Filter + Sort)
+        function updateDisplay() {
+            // 1. Tentukan urutan elemen
+            let itemsToDisplay = [...originalItems];
+
+            if (currentSort === 'date') {
+                itemsToDisplay.sort((a, b) => {
+                    const dateA = new Date(a.querySelector('time').getAttribute('datetime'));
+                    const dateB = new Date(b.querySelector('time').getAttribute('datetime'));
+                    return dateB - dateA; // Tercepat / Terbaru ke Terlama
+                });
+            }
+
+            // 2. Terapkan urutan ke DOM & Filter
+            itemsToDisplay.forEach(item => {
+                grid.appendChild(item); // Memindahkan elemen sesuai urutan array
+
+                // Reset animasi
+                item.style.animation = 'none';
+                item.offsetHeight; // trigger reflow
+                item.style.animation = 'fadeIn 0.5s ease forwards';
+
+                // Filter kriteria
+                if (currentFilter === 'all' || item.classList.contains(currentFilter)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Event Handler tombol Filter
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                updateDisplay();
+            });
+        });
+
+        // Event Handler tombol Sort Toggle
+        sortBtn.addEventListener('click', () => {
+            if (currentSort === 'default') {
+                currentSort = 'date';
+                sortLabel.textContent = 'Sort: By Date';
+                sortBtn.classList.add('active');
+            } else {
+                currentSort = 'default';
+                sortLabel.textContent = 'Sort: Default';
+                sortBtn.classList.remove('active');
+            }
+            updateDisplay();
+        });
     </script>
 
 </body>
