@@ -59,6 +59,211 @@ body {
     padding: 0;
 }
 
+/* ===== DROPDOWN NAV ===== */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    color: #888888;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0 0 5px 0;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.dropdown-toggle:hover,
+.dropdown.active .dropdown-toggle {
+    color: white;
+    border-bottom: 2px solid white; /* Garis bawah khas navbar kamu */
+}
+
+.dropdown-icon {
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+/* Dropdown Sub-menu (Desktop) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 2rem;
+    background-color: #0d0d0d;
+    min-width: 150px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+    border: 1px solid #222222;
+    padding: 8px 0;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    color: #888888;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    margin-left: 0 !important;
+    border-bottom: none !important;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a.active {
+    color: white;
+    background-color: #1a1a1a; /* Background sedikit lebih terang agar menonjol */
+    font-weight: 600;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 900px;
+    padding: 4rem 0;
+}
+
+.hero-headline {
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.hero-subheadline {
+    font-size: 1.35rem;
+    color: #888888;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.hero-buttons .btn-send {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* ===== SECTION CONTAINERS & HEADERS ===== */
+.section-container {
+    margin-top: 5rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #222222;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.view-more {
+    color: #888888;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.view-more i {
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+
+.view-more:hover {
+    color: white;
+}
+
+.view-more:hover i {
+    transform: translateX(4px);
+}
+
+/* ===== CARD META, BADGES & EXCERPTS ===== */
+.card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.6rem;
+}
+
+.card-meta time {
+    margin-bottom: 0; /* Reset margin agar sejajar dengan badge */
+}
+
+.badge {
+    display: inline-block;
+    background-color: #222222;
+    color: #cccccc;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid #333333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.category {
+    background-color: transparent;
+    border-color: #444444;
+    color: #ffffff;
+}
+
+/* Mengubah hierarki judul kartu menjadi H3 */
+.blog-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.post-link:hover h3 {
+    text-decoration: underline;
+}
+
+.card-excerpt {
+    font-size: 0.95rem;
+    color: #888888;
+    line-height: 1.5;
+    line-clamp: 2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Membatasi teks maksimal 2 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 /* ===== LAYOUT ===== */
 .content {
     padding: 0 5% 5rem 5%;
@@ -254,6 +459,15 @@ h2 {
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.1;
+}
+
+.cv-container {
+    display: flex;
+    justify-content: center; /* Menjaga tombol tetap di tengah secara horizontal */
+    align-items: center;     /* Memastikan kedua tombol sejajar tinggi/vertikalnya */
+    gap: 1.5rem;             /* Memberikan jarak antartombol */
+    margin-top: 4rem;
+    flex-wrap: wrap;         /* Opsional: agar rapi menumpuk jika dibuka di layar HP kecil */
 }
 
 /* Styling List Tutorial */
@@ -968,6 +1182,16 @@ pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
     }
 }
 
+/* Desktop Hover Trigger */
+@media (min-width: 769px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .dropdown:hover .dropdown-icon {
+        transform: rotate(180deg);
+    }
+}
+
 @media (max-width: 1100px) {
     .blog-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk tablet */
@@ -978,6 +1202,27 @@ pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
     .navbar { padding: 1.5rem 5%; }
     .page-title { font-size: 2.5rem; }
     h2 { font-size: 1.8rem; }
+    .hero-headline {
+        font-size: 2.4rem;
+    }
+    .hero-subheadline {
+        font-size: 1.1rem;
+    }
+    .hero-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+    .hero-buttons .btn-send {
+        width: 100%;
+    }
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
     .blog-grid {
         grid-template-columns: 1fr; /* 1 kolom untuk HP */
     }
@@ -1058,5 +1303,33 @@ pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
     .gallery-container {
         column-count: 1;
         column-gap: 0;
+    }
+    .dropdown {
+        width: 100%;
+    }
+    .dropdown-toggle {
+        margin-left: 0;
+        margin: 1rem 0;
+        width: 100%;
+        justify-content: space-between;
+        font-size: 1.5rem;
+    }
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background-color: transparent;
+        padding-left: 1.5rem;
+        left: 0;
+    }
+    .dropdown-menu a {
+        font-size: 1.2rem;
+        padding: 6px 0;
+    }
+    .dropdown.open .dropdown-menu {
+        display: block;
+    }
+    .dropdown.open .dropdown-icon {
+        transform: rotate(180deg);
     }
 }

@@ -30,6 +30,15 @@
                 <i class="fas fa-times"></i>
             </button>
             <a href="../index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="works-dropdown-toggle">
+                    Works <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../works/portfolio.html">Portfolio</a>
+                    <a href="../works/games.html">Games</a>
+                </div>
+            </div>
             <a href="../blogs.html">Blogs</a>
             <a href="../about.html">About</a>
             <a href="../contact.html">Contact</a>
@@ -168,6 +177,19 @@
         menuOpen.onclick = () => toggleMenu(true);
         menuClose.onclick = () => toggleMenu(false);
         overlay.onclick = () => toggleMenu(false);
+
+        // Toggle dropdown saat di klik di Mobile View
+        const worksToggle = document.getElementById('works-dropdown-toggle');
+        if (worksToggle) {
+            worksToggle.addEventListener('click', (e) => {
+                // Hanya aktif di layar HP/Tablet
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parentDropdown = worksToggle.closest('.dropdown');
+                    parentDropdown.classList.toggle('open');
+                }
+            });
+        }
 
         // --- 2. LIGHTBOX & SLIDESHOW LOGIC ---
         const lightbox = document.getElementById('lightbox');

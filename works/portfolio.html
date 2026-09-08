@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Koleksi proyek game development, shader, dan tools oleh AW WorkLab.">
+    <title>Portfolio | AW WorkLab</title>
+    
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/logo.png" alt="AW WorkLab Logo">
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menu-open" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="side-menu">
+            <button class="menu-close" id="menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <a href="../index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="works-dropdown-toggle">
+                    Works <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../works/portfolio.html" class="active">Portfolio</a>
+                    <a href="../works/games.html">Games</a>
+                </div>
+            </div>
+            <a href="../blogs.html">Blogs</a>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-overlay" id="nav-overlay"></div>
+    </header>
+
+    <main class="content">
+        <section class="hero-section">
+            <h1 class="hero-headline">Portfolio</h1>
+            <p class="hero-subheadline">A collection of client work, technical art breakdowns, and side projects.</p>
+        </section>
+
+        <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="cat-portfolio">Portfolio</button>
+            <button class="filter-btn" data-filter="cat-games">Games</button>
+            <button class="filter-btn" data-filter="cat-other">Other Works</button>
+
+            <div class="sort-wrapper">
+                <button class="filter-btn sort-btn" id="sort-toggle">
+                    <i class="fas fa-sort"></i> <span id="sort-label">Sort: Default</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="blog-grid portfolio-grid" id="portfolio-grid">
+            <article class="blog-card filter-item cat-games">
+                <a href="../games/2025-11-01-cool-as-fridge.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/cover.png" alt="Cool as Fridge">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Game Project</span>
+                        <time datetime="2025-11-01">Nov 1, 2025</time>
+                    </div>
+                    <h2>Cool as Fridge</h2>
+                    <p class="card-excerpt">Cool as Fridge is a physics-based inventory management roguelike where you survive 30 days by efficiently managing resources, preventing waste, and fending off enemies, all through emergent, creativity-driven problem-solving gameplay.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="../games/2023-06-26-tales-of-the-book.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/cover (2).png" alt="Tales of the Book">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Gameseed 2023</span>
+                        <time datetime="2023-06-26">Jun 26, 2023</time>
+                    </div>
+                    <h2>Tales of the Book</h2>
+                    <p class="card-excerpt">Tales of the Book is a mobile game that carries the concept of 2.5D pixel art with a fantasy rpg theme. The goal of this game is to help our character find his way home.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="../games/2025-01-26-deep-dive-rumble.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/d6a7ebbd-dee8-4093-91eb-437812086884.jpeg" alt="Deep Dive Rumble">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Global Game Jam 2025</span>
+                        <time datetime="2025-01-26">Jan 26, 2025</time>
+                    </div>
+                    <h2>Deep Dive Rumble</h2>
+                    <p class="card-excerpt">Deep Dive Rumble is a endless survival game that carries the concept of 2D art with a bright cartoon theme. The goal of this game is to help our character to survive as long as possible. This is my second Global Game Jam game.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="../games/2026-07-04-quartlane.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/WhatsApp Image 2026-07-13 at 14.13.20.jpeg" alt="Quartlane">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Client Project</span>
+                        <time datetime="2026-07-04">Jul 4, 2026</time>
+                    </div>
+                    <h2>Quartlane</h2>
+                    <p class="card-excerpt">Quartlane is a casual strategic card mobile game that blends the nostalgic fun of the classic Quartet card game with modern deck-building mechanics. Players race to complete card category sets while using offensive, defensive, buff, and normal action cards to protect their collections, sabotage opponents, and create unexpected comebacks.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-09-19-grass-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260207-173034.jpg" alt="Grass Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unreal Engine</span>
+                        <time datetime="2025-09-19">Sep 19, 2025</time>
+                    </div>
+                    <h2>Grass Shader</h2>
+                    <p class="card-excerpt">The shader is built in Unreal Engine using a Masked, Two-Sided Foliage material. Key features include wind sway, per-instance color variation, opacity masking, and parameter controls for flexibility.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-04-16-terrain-generator.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2024-07-02 08-49-13.png" alt="Terrain Generator">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-04-16">Apr 16, 2025</time>
+                    </div>
+                    <h2>Terrain Generator</h2>
+                    <p class="card-excerpt">Terrain Generator is a tool to help create procedural content generation that is terrain.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-07-23-pixel-art-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2025-02-01 19-14-21.png" alt="Pixel Art Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Godot Engine</span>
+                        <time datetime="2025-07-23">Jul 23, 2025</time>
+                    </div>
+                    <h2>Pixel Art Shader</h2>
+                    <p class="card-excerpt">A Custom Post-processing Shader to make look like 3D pixel art effect.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-12-05-grass-cel-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260613-100720.jpg" alt="Grass Cel Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-12-05">Dec 5, 2025</time>
+                    </div>
+                    <h2>Grass Cel Shader</h2>
+                    <p class="card-excerpt">Stylized grass that uses a geometry and tessellation shaders.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-04-16-autosave.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2024-07-02 10-54-16.png" alt="Autosave">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-04-16">Apr 16, 2025</time>
+                    </div>
+                    <h2>Autosave</h2>
+                    <p class="card-excerpt">Create periodic saves of the scene being worked on.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-12-19-sprite-directional-billboarding.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2024-07-08 21-51-41.png" alt="Sprite Directional Billboarding">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unreal Engine</span>
+                        <time datetime="2024-12-19">Dec 19, 2024</time>
+                    </div>
+                    <h2>Sprite Directional Billboarding</h2>
+                    <p class="card-excerpt">2D Character Sprite in 3D environments.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-02-18-procedural-placement.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/HighresScreenshot00001.png" alt="Procedural Placement">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unreal Engine</span>
+                        <time datetime="2024-02-18">Feb 18, 2024</time>
+                    </div>
+                    <h2>Procedural Placement</h2>
+                    <p class="card-excerpt">Created with control rig and fullbody ik to make character have ik physics and have procedural placement for leg and hand.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-04-16-pixel-art-effect.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Image Sequence_004_0000.png" alt="Pixel Art Effect">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-04-16">Apr 16, 2025</time>
+                    </div>
+                    <h2>Pixel Art Effect</h2>
+                    <p class="card-excerpt">Mixed with Pixelize Shader, Cel-Shade Shader and Outline Shader, make look like retro cartoon art style game with pixelate effect.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-12-05-cel-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260613-100800.jpg" alt="Cel Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-12-05">Dec 5, 2025</time>
+                    </div>
+                    <h2>Cel Shader</h2>
+                    <p class="card-excerpt">Cel shader with a custom lighting and support for multiple lights.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="../games/2024-11-01-gone-astray.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/goneastraycover.png" alt="Gone Astray">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">GameJam+ 2024</span>
+                        <time datetime="2024-11-01">Nov 1, 2024</time>
+                    </div>
+                    <h2>Gone Astray</h2>
+                    <p class="card-excerpt">Gone Astray is a casual puzzle platformer with ragdoll-based set in outer space.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-09-30-game-launcher.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2025-02-22 20-15-53.png" alt="Game Launcher">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Godot Engine</span>
+                        <time datetime="2025-09-30">Sep 30, 2025</time>
+                    </div>
+                    <h2>Game Launcher</h2>
+                    <p class="card-excerpt">A simple game launcher for showcase games.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-11-01-2d-active-ragdoll.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260514-184601.jpg" alt="2D Active Ragdoll">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2024-11-01">Nov 1, 2024</time>
+                    </div>
+                    <h2>2D Active Ragdoll</h2>
+                    <p class="card-excerpt">A 2D active ragdoll that uses force to move itself, physical animation.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2023-11-18-ready-rig-character.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/thumbnail 1.PNG" alt="Ready Rig Character">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Blender</span>
+                        <time datetime="2023-11-18">Nov 18, 2023</time>
+                    </div>
+                    <h2>Ready Rig Character</h2>
+                    <p class="card-excerpt">Full rigged & skinned character.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-07-23-toon-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2025-01-31 19-33-45.png" alt="Toon Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Godot Engine</span>
+                        <time datetime="2025-07-23">Jul 23, 2025</time>
+                    </div>
+                    <h2>Toon Shader</h2>
+                    <p class="card-excerpt">A Toon Shader with customization options.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-04-16-slash-vfx.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Image Sequence_003_0000.png" alt="Slash VFX">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-04-16">Apr 16, 2025</time>
+                    </div>
+                    <h2>Slash VFX</h2>
+                    <p class="card-excerpt">Slash VFX using particle system.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-04-16-glitching-hologram.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Image Sequence_002_0000.png" alt="Glitching Hologram">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-04-16">Apr 16, 2025</time>
+                    </div>
+                    <h2>Glitching Hologram</h2>
+                    <p class="card-excerpt">Hologram is surface material shader with moving lines and has a glitch effect.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-12-05-water-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260613-100542.jpg" alt="Water Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-12-05">Dec 5, 2025</time>
+                    </div>
+                    <h2>Water Shader</h2>
+                    <p class="card-excerpt">Stylized water shader with animated foam patterns, dynamic mesh waves, and intersection foam around solid objects.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-12-05-tree-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260613-100656.jpg" alt="Tree Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-12-05">Dec 5, 2025</time>
+                    </div>
+                    <h2>Tree Shader</h2>
+                    <p class="card-excerpt">Stylized tree that uses a shader to transform each quad of a 3D mesh into a camera-facing billboard.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-02-18-construction-tool.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/HighresScreenshot00002.png" alt="Construction Tool">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unreal Engine</span>
+                        <time datetime="2024-02-18">Feb 18, 2024</time>
+                    </div>
+                    <h2>Construction Tool</h2>
+                    <p class="card-excerpt">Created with actor blueprint, this tool help to create procedural content generation like fence, floor, and more and each props has a variations.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-02-18-sword-trail.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/HighresScreenshot00008.png" alt="Sword Trail">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unreal Engine</span>
+                        <time datetime="2024-02-18">Feb 18, 2024</time>
+                    </div>
+                    <h2>Sword Trail</h2>
+                    <p class="card-excerpt">Sword Trail VFX using particle system.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-02-18-hologram.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/HighresScreenshot00000.png" alt="Hologram">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unreal Engine</span>
+                        <time datetime="2024-02-18">Feb 18, 2024</time>
+                    </div>
+                    <h2>Hologram</h2>
+                    <p class="card-excerpt">Hologram is surface material shader with moving stripes and scales, and has 2 variations that is lines and dots.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-04-16-procedural-animation.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2024-07-02 08-34-05.png" alt="Procedural Animation">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-04-16">Apr 16, 2025</time>
+                    </div>
+                    <h2>Procedural Animation</h2>
+                    <p class="card-excerpt">Created with animation rigging to make character have ik physics and have procedural placement for leg.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-11-01-fire-ice-fullscreen-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260514-184529.jpg" alt="Fire/Ice Fullscreen Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2024-11-01">Nov 1, 2024</time>
+                    </div>
+                    <h2>Fire/Ice Fullscreen Shader</h2>
+                    <p class="card-excerpt">Fullscreen Shaders for fire or frozen status effect.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-11-01-shockwave.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260514-184419.jpg" alt="Shockwave">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2024-11-01">Nov 1, 2024</time>
+                    </div>
+                    <h2>Shockwave</h2>
+                    <p class="card-excerpt">Shockwave shader for an cool looking effect.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-11-01-portal.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260514-184318.jpg" alt="Portal">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2024-11-01">Nov 1, 2024</time>
+                    </div>
+                    <h2>Portal</h2>
+                    <p class="card-excerpt">Portal shader for a portal VFX.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-11-01-pixel-perfect-effect.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260514-184454.jpg" alt="Pixel Perfect Effect">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2024-11-01">Nov 1, 2024</time>
+                    </div>
+                    <h2>Pixel Perfect Effect</h2>
+                    <p class="card-excerpt">Pixel Perfect Shader to make sure pixel art remains crisp and clear at different resolutions, and stable in motion.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-07-23-water-physics.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260207-173052.jpg" alt="Water Physics">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Godot Engine</span>
+                        <time datetime="2025-07-23">Jul 23, 2025</time>
+                    </div>
+                    <h2>Water Physics</h2>
+                    <p class="card-excerpt">A bouyancy force for water.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-07-23-car-physics.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2025-01-31 14-56-35.png" alt="Car Physics">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Godot Engine</span>
+                        <time datetime="2025-07-23">Jul 23, 2025</time>
+                    </div>
+                    <h2>Car Physics</h2>
+                    <p class="card-excerpt">A physics based car controller.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-12-05-wall-cutout-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260613-100644.jpg" alt="Wall Cutout Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-12-05">Dec 5, 2025</time>
+                    </div>
+                    <h2>Wall Cutout Shader</h2>
+                    <p class="card-excerpt">This shader programmatically cuts a circular hole in solid walls so players can see their character or target objects when obstructed.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-12-05-scrolling-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260613-100706.jpg" alt="Scrolling Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2025-12-05">Dec 5, 2025</time>
+                    </div>
+                    <h2>Scrolling Shader</h2>
+                    <p class="card-excerpt">Simple and dynamic scrolling texture shader.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2025-07-23-interior-parallax-mapping.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Screenshot from 2025-01-31 14-13-43.png" alt="Interior Parallax Mapping">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Godot Engine</span>
+                        <time datetime="2025-07-23">Jul 23, 2025</time>
+                    </div>
+                    <h2>Interior Parallax Mapping</h2>
+                    <p class="card-excerpt">This shader is an optimization measure used in game development to increase performance while keeping a good visual quality, it uses texture atlas with room tiles that are front room view automatically mapped into a cube.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="../games/2024-09-15-song-of-plants.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/cover (1).png" alt="Song of Plants">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Gameseed 2024</span>
+                        <time datetime="2024-09-15">Sep 15, 2024</time>
+                    </div>
+                    <h2>Song of Plants</h2>
+                    <p class="card-excerpt">Song of Plants is a game with the 2D Rhythm game genre where in this game we as players must match the color of the plants with the rhythm of the music that will appear.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-09-15-trail-and-particle-collections.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/VideoCapture_20260514-184254.jpg" alt="Trail & Particle Collections">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unity Engine</span>
+                        <time datetime="2024-09-15">Sep 15, 2024</time>
+                    </div>
+                    <h2>Trail & Particle Collections</h2>
+                    <p class="card-excerpt">My trail & particle collections.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-portfolio">
+                <a href="../portfolio/2024-02-18-pixel-art-post-processing-shader.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/HighresScreenshot11111.png" alt="Pixel Art Post-processing Shader">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Unreal Engine</span>
+                        <time datetime="2024-02-18">Feb 18, 2024</time>
+                    </div>
+                    <h2>Pixel Art Post-processing Shader</h2>
+                    <p class="card-excerpt">Mixed with Pixel Art Post-processing Shader and Cel-Shader Post-processing Shader, make look like retro cartoon art style game with pixelate effect.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-games">
+                <a href="../games/2023-02-05-mochi-escape-from-cave.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/GameJam 11_07_2023 00.11_edited.png" alt="Mochi Escape from Cave">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Global Game Jam 2023</span>
+                        <time datetime="2023-02-05">Feb 5, 2023</time>
+                    </div>
+                    <h2>Mochi Escape from Cave</h2>
+                    <p class="card-excerpt">Mochi Escape from Cave is a platformer souls-like game that carries the concept of 2D pixel art with a dark fantasy theme. The goal of this game is to help our character to escape for the rooted cave. This is my first Global Game Jam game.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="../otherworks/2023-12-18-ui-game-mockup.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Image0316.png" alt="UI Game Mockup">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Game Design</span>
+                        <time datetime="2023-12-18">Dec 18, 2023</time>
+                    </div>
+                    <h2>UI Game Mockup</h2>
+                    <p class="card-excerpt">One of the tasks of game design is to create game UI documentation to explain to programmers, the following is an example of a UI mockup for the game "Giko's Telescope" in the Narrative Choices Matter genre.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="../otherworks/2023-08-03-fps-level-design.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Level Design Learning 03_08_2023 20.25.41.png" alt="FPS Level Design">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Level Design</span>
+                        <time datetime="2023-08-03">Aug 3, 2023</time>
+                    </div>
+                    <h2>FPS Level Design</h2>
+                    <p class="card-excerpt">This level design is made for FPS modular game for exercise.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="../otherworks/2023-08-07-puzzle-platformer-level-design.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/18.png" alt="Puzzle Platformer Level Design">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Level Design</span>
+                        <time datetime="2023-08-07">Aug 7, 2023</time>
+                    </div>
+                    <h2>Puzzle Platformer Level Design</h2>
+                    <p class="card-excerpt">Puzzle Platformer Level Design is level blockout design which combines puzzle elements with a platformer.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="../otherworks/2024-04-23-web-design.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/landingpage.lobby.png" alt="Web Design">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Web Design</span>
+                        <time datetime="2024-04-23">Apr 23, 2024</time>
+                    </div>
+                    <h2>Web Design</h2>
+                    <p class="card-excerpt">This web design is made for Chiyo Creative Fun House.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="../otherworks/2022-11-27-coding-hub.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Introduction.png" alt="Coding Hub">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Figma</span>
+                        <time datetime="2022-11-27">Nov 27, 2022</time>
+                    </div>
+                    <h2>Coding Hub</h2>
+                    <p class="card-excerpt">Coding Hub is a coding/programming learning application for mobile devices.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="../otherworks/2024-07-17-art-and-design-collections.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Green Circle.jpg" alt="Art & Design Collections">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Art & Design</span>
+                        <time datetime="2024-07-17">Jul 17, 2024</time>
+                    </div>
+                    <h2>Art & Design Collections</h2>
+                    <p class="card-excerpt">My art & design collections.</p>
+                </a>
+            </article>
+
+            <article class="blog-card filter-item cat-other">
+                <a href="../otherworks/2023-03-26-flutter-calculator.html" class="post-link">
+                    <div class="image-wrapper">
+                        <img src="../assets/Flutter Calculator.jpg" alt="Flutter Calculator">
+                    </div>
+                    <div class="card-meta">
+                        <span class="badge">Flutter</span>
+                        <time datetime="2023-03-26">Mar 26, 2023</time>
+                    </div>
+                    <h2>Flutter Calculator</h2>
+                    <p class="card-excerpt">Mini project of Flutter Fundamental program.</p>
+                </a>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer-simple">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/awworklab/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/awworklab/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ariiq-wicaksana/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/awworklab" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@awworklab" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2026 AW WorkLab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- NAVBAR LOGIC ---
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        const toggleMenu = (isOpen) => {
+            sideMenu.classList.toggle('active', isOpen);
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        };
+
+        menuOpen.onclick = () => toggleMenu(true);
+        menuClose.onclick = () => toggleMenu(false);
+        overlay.onclick = () => toggleMenu(false);
+
+        // Toggle dropdown saat di klik di Mobile View
+        const worksToggle = document.getElementById('works-dropdown-toggle');
+        if (worksToggle) {
+            worksToggle.addEventListener('click', (e) => {
+                // Hanya aktif di layar HP/Tablet
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parentDropdown = worksToggle.closest('.dropdown');
+                    parentDropdown.classList.toggle('open');
+                }
+            });
+        }
+
+        // --- FILTER & SORT LOGIC ---
+        const grid = document.getElementById('portfolio-grid');
+        const filterBtns = document.querySelectorAll('.filter-btn:not(.sort-btn)');
+        const sortBtn = document.getElementById('sort-toggle');
+        const sortLabel = document.getElementById('sort-label');
+        
+        // Simpan urutan awal HTML (Default Order)
+        const originalItems = Array.from(grid.querySelectorAll('.filter-item'));
+
+        let currentFilter = 'all';
+        let currentSort = 'default'; // 'default' atau 'date'
+
+        // Fungsi Render ulang tampilan (Filter + Sort)
+        function updateDisplay() {
+            // 1. Tentukan urutan elemen
+            let itemsToDisplay = [...originalItems];
+
+            if (currentSort === 'date') {
+                itemsToDisplay.sort((a, b) => {
+                    const dateA = new Date(a.querySelector('time').getAttribute('datetime'));
+                    const dateB = new Date(b.querySelector('time').getAttribute('datetime'));
+                    return dateB - dateA; // Tercepat / Terbaru ke Terlama
+                });
+            }
+
+            // 2. Terapkan urutan ke DOM & Filter
+            itemsToDisplay.forEach(item => {
+                grid.appendChild(item); // Memindahkan elemen sesuai urutan array
+
+                // Reset animasi
+                item.style.animation = 'none';
+                item.offsetHeight; // trigger reflow
+                item.style.animation = 'fadeIn 0.5s ease forwards';
+
+                // Filter kriteria
+                if (currentFilter === 'all' || item.classList.contains(currentFilter)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Event Handler tombol Filter
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                updateDisplay();
+            });
+        });
+
+        // Event Handler tombol Sort Toggle
+        sortBtn.addEventListener('click', () => {
+            if (currentSort === 'default') {
+                currentSort = 'date';
+                sortLabel.textContent = 'Sort: By Date';
+                sortBtn.classList.add('active');
+            } else {
+                currentSort = 'default';
+                sortLabel.textContent = 'Sort: Default';
+                sortBtn.classList.remove('active');
+            }
+            updateDisplay();
+        });
+    </script>
+
+</body>
+</html>
